@@ -1,0 +1,213 @@
+\documentclass[a4paper, 11pt, articel,oneside,openany]{memoir} %A4 papir, skrift 11, artikel, ensidet print, kapitel kan starte på alle sider
+
+% Sætter horisontal og vertikale margener
+\usepackage[paper=a4paper,%
+  hmargin=1.5in,%
+  vmargin=0.9in
+ ]{geometry}
+
+% Font encoding og sprog
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{siunitx}
+\sisetup{group-separator = {,}}
+
+\usepackage[danish]{babel} % bedre orddeling, minimum to tegn før og efter deling
+\usepackage{lmodern}  					% gør  pænere
+\usepackage{microtype} 					% laver micro ændringer i text for at udgå luft og orddeling
+
+
+% Farvepakker
+\usepackage[svgnames,dvipsnames,x11names]{xcolor}
+
+% Tegning af kasser
+\usepackage{calc,graphicx,color}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+
+% Visning af kildekode
+\usepackage{listings}
+
+\lstset{ %
+  backgroundcolor=\color{white}, 	% Baggrundsfarve
+  basicstyle=\tiny,        			% Tekststørrelse
+  breakatwhitespace=true,        		% Kun linjeskift ved mellemrum
+  breaklines=true,                 		% Orddeling til
+  captionpos=b,                    		% Caption under listing
+  commentstyle=\color{mygreen},    	% kommentar farve
+  extendedchars=true,              		% lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,	                   		% Ramme omkring kildekode
+  keepspaces=true,                 		% beholder mellemrum (indentation)
+  keywordstyle=\color{blue},      	 	% keyword farve
+  numbers=left,                    		% Placering af linjenumre (none, left, right)
+  numbersep=5pt,                   		% Afstand til linjrenumre
+  numberstyle=\tiny\color{mygray}, 	% Linjenummer tekststil
+  showspaces=false,                		% show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  stepnumber=5,                    		% Hver linje har nummer
+  tabsize=4,	                   		% Sætter default tabsize til 4 mellemrum
+  title=\lstname                   		% filnavn som caption, hvis ikke andet er angivet
+}
+
+% Captions og referencer
+\usepackage{caption,cleveref}
+
+% Figurer og floats
+\usepackage[]{graphicx}
+\graphicspath{{figure/}}
+\usepackage[section]{placeins}
+
+
+% Tabeller
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage[tableposition=top]{caption}
+
+
+
+%matematik
+\usepackage[]{amsmath}
+\usepackage{amssymb,bm}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+
+\newcommand{\tsub}[1]{_{\textup{#1}}}
+
+\setsubsecheadstyle{\Large\bfseries}
+\setsubsubsecheadstyle{\normalsize\bfseries}
+
+%%% BILLEDE BREDDE
+\newcommand{\plotwidth}{0.95}
+
+% BEGIN: DSD Top Macro — [Øvelsesnummer, navn]
+\newcommand{\dsbtop}[2]{
+\noindent
+\setlength\fboxsep{5mm}
+\setlength\fboxrule{0.75mm}
+\fcolorbox{DeepSkyBlue4}{white}{%
+\begin{minipage}{\textwidth - 2\fboxsep - 2\fboxrule}
+\centering
+
+\setlength\parskip{0.5em} % Afstand mellem linjer
+
+\textbf{I3-GFV}
+
+Nanna Friis-Nielsen -- 201507456
+
+
+\end{minipage}}
+\par}
+% END: ASB Top Macro
+
+\begin{document}
+	
+\chapter*{I3-GFV øvelse 3 - ADC and Signal Conditioning}
+
+\subsubsection{5. Praktisk A/D konvertering}
+Skitser en implementering af et vejesystem baseret på en strain gauge, vejecelle, instrumentationsforstærkeren AD620 og en A/D konverter.
+
+Belys i den forbindelse problematikkerne relateret til:
+\begin{itemize}
+	\item Valg af A/D konverter type.
+	\item Udnyttelse af A/D konverterens dynamikområde (spænding).
+	\item Ratiometrisk måling.
+	\item Undertrykkelse af common mode støj.
+	\item Sample/Hold og samplingshastighed.
+	\item Suppler med egne erfaringer.
+\end{itemize}
+
+
+
+
+\section{ADC og signalkonvertering}
+
+Formålet med øvelsen er at få en forståelse af hvordan vi kan bruge den indbyggede ADC converter i forbindelse med en strain gauge vægt.
+
+Følsomheden for vægten er 1 mV/V. For at kunne omsætte dette til en vægt, bliver vi nødt til at finde ud af hvor meget spændingen ændrer sig, og derefter sætte det i relation til den kendte vægt for lodderne som er:
+
+\begin{itemize}
+
+	\item Møtrik 8 vejer 5g
+	\item Møtrik 10 vejer 10g
+	\item Møtrik 12 vejer 15g
+	
+\end{itemize}
+
+
+Vi måler med en forsyningsspænding til vægten på 10V, og en reference spænding for ADC'en på 1,024 V.
+Vi har en opløsning på 16 bit for ADC'en, da vi fandt ud af at 8bits opløsning var for lidt til at kunne måle de små lodder.
+
+\begin{table}[!htbp]
+	\centering
+	\caption{Måling af vægtlodder}
+	\label{tbl:result_1}
+	\begin{tabular}{c c c}
+		Lodvægt & Måling (\si{\milli\volt}) &  $\frac{\si{\milli\volt}}{\si{\g}}$ \\
+		\toprule
+		0g & 1127 mV & offset \\
+		\midrule
+		15g & 1152 mV & 1,67 \\
+		\midrule
+		30g & 1177 & 1,67 \\
+		\midrule
+		45g & 1202 & 1,67 \\
+		\midrule
+		545g & 1999 & 1,59 \\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+Vi kan konkluderer, ud fra det ovenstående, at vægten måler nogenlunde lineært.
+
+Vi opjusterer nu forsyningsspændingen til at være 10V. Samtidig ændrer vi Vref fra at være en absolut værdi, taget internt fra PSoC'en, til at være afhængig af vægtens forsyningsspænding. I vores tilfælde vil det ikke have nogen betydning da vi ved at vores forsyningsspænding vedligeholdes på samme værdi af vores POWER SUPPLY i laboratoriet.
+
+Hvis vi derimod kørte vægten over et batteri, ville det udgøre et problem at have en absolut Vref, da vi dermed ikke kunne vide om ADC'ens output ville ændrer sig grundet en ændring i vægt eller ændring i vægtens forsyningsspænding. Dermed ville vi ikke kunne stole på vores målinger.
+
+Det er altså fordelagtigt at vælge en Vref der er relativ til forsyningsspændingen.
+
+
+\begin{table}[!htbp]
+	\centering
+	\caption{Måling af vægtlodder}
+	\label{tbl:result_1}
+	\begin{tabular}{c c c}
+		Lodvægt & Måling (\si{\milli\volt}) & $\frac{\si{\milli\volt}}{\si{\g}}$ \\
+		\toprule
+		0g & 2240 mV & offset \\
+		\midrule
+		15g & 2291 mV & 3,4 \\
+		\midrule
+		30g & 2340 & 3,28 \\
+		\midrule
+		45g & 2391 & 3,4 \\
+		\midrule
+		545g & Ikke målbar med 10V forsyning & 1,59 \\
+		
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+Herefter implementerer vi en TARA funktion. Dette gøres et interrupt der, når det bliver kaldt, gemmer den nuværende vægt værdi i et offset. Ved hver måling trækkes dette offset fra den aktuelle måling og dermed, vil måleværdien altid være 0 efter et tryk på reset switchen på PSoC'en. Koden ses implementeret her.
+
+Her ses interruptrutinen
+
+\lstinputlisting[language=c, firstline=79, lastline=82]{code/main.c}
+
+
+\clearpage
+Her ses hvordan offset måles når vægten startes, samt hvordan offset trækkes fra målingen:
+
+
+\lstinputlisting[language=c, firstline=124, lastline=167]{code/main.c}
+
+
+
+
+
+
+
+\end{document}
