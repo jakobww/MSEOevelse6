@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.25)  30 NOV 2016 15:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.25)  1 DEC 2016 13:09
 entering extended mode
 **./ovelse_6.tex
 (ovelse_6.tex
@@ -1589,16 +1589,42 @@ File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 148.
 
-<figure/kreds1.png, id=1, 882.29625pt x 339.51843pt>
+<figure/kreds1.png, id=1, 687.31781pt x 274.77657pt>
 File: figure/kreds1.png Graphic file (type png)
  <use figure/kreds1.png>
-Package pdftex.def Info: figure/kreds1.png used on input line 171.
-(pdftex.def)             Requested size: 380.69788pt x 146.49777pt.
+Package pdftex.def Info: figure/kreds1.png used on input line 172.
+(pdftex.def)             Requested size: 380.69788pt x 152.19252pt.
 
-[1
+<figure/modstandsstoej.png, id=3, 277.035pt x 311.66437pt>
+File: figure/modstandsstoej.png Graphic file (type png)
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <./figure/kreds1.png>]
- [3]
+<use figure/modstandsstoej.png>
+Package pdftex.def Info: figure/modstandsstoej.png used on input line 186.
+(pdftex.def)             Requested size: 190.34894pt x 214.14032pt.
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] <figure/opampstoej.png, i
+d=14, 430.60875pt x 71.51718pt>
+File: figure/opampstoej.png Graphic file (type png)
+
+<use figure/opampstoej.png>
+Package pdftex.def Info: figure/opampstoej.png used on input line 200.
+(pdftex.def)             Requested size: 304.55945pt x 50.5833pt.
+ [2 <./figure/kreds1.png> <./figure/modstandsstoej.png> <./figure/opampstoej.pn
+g>]
+<figure/foerU1b.png, id=22, 453.94594pt x 71.51718pt>
+File: figure/foerU1b.png Graphic file (type png)
+ <use figure/foerU1b.png>
+Package pdftex.def Info: figure/foerU1b.png used on input line 221.
+(pdftex.def)             Requested size: 304.55945pt x 47.98172pt.
+
+<figure/samletstoej.png, id=23, 383.93437pt x 184.43906pt>
+File: figure/samletstoej.png Graphic file (type png)
+
+<use figure/samletstoej.png>
+Package pdftex.def Info: figure/samletstoej.png used on input line 235.
+(pdftex.def)             Requested size: 304.55945pt x 146.31595pt.
+
 
 FiXme Summary: Number of notes: 0,
 (FiXme)        Number of warnings: 0,
@@ -1606,31 +1632,30 @@ FiXme Summary: Number of notes: 0,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 0.
 
-[4] (ovelse_6.aux
+[3 <./figure/foerU1b.png> <./figure/samletstoej.png>] (ovelse_6.aux
 Package cleveref Info: loaded `danish' language definitions on input line 4.
 ) ) 
 Here is how much of TeX's memory you used:
- 24634 strings out of 493334
- 450057 string characters out of 3136640
- 582751 words of memory out of 3000000
- 27842 multiletter control sequences out of 15000+200000
- 66838 words of font info for 77 fonts, out of 3000000 for 9000
+ 24667 strings out of 493334
+ 450717 string characters out of 3136640
+ 578751 words of memory out of 3000000
+ 27864 multiletter control sequences out of 15000+200000
+ 64182 words of font info for 80 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,22n,92p,10361b,909s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Prog
-ram Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files (x86)
-/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files (x86)/MiKTeX 2.9
-/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvip
-s/lm/lm-mathsy.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmb
-x12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:
-/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Fi
-les (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program Files (x86)/Mi
-KTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
-ts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publ
-ic/lm/lmsy10.pfb>
-Output written on ovelse_6.pdf (4 pages, 167864 bytes).
+ 55i,11n,92p,10361b,561s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Prog
+ram Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}{C:/Program Files (x86)
+/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Files (x86)/MiKTeX 2.9
+/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pu
+blic/lm/lmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmm
+i10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/
+Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program File
+s (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/lm/lmsy10.pfb>
+Output written on ovelse_6.pdf (3 pages, 196566 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 57 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 15878 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 15386 words of extra memory for PDF output out of 17280 (max. 10000000)
 

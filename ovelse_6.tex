@@ -138,7 +138,7 @@ Nanna Friis-Nielsen -- 201507456
 \section{Indledning}
 I MSE øvelse 6 vil vi tilslutte vores forstærker fra semester projekt til PSOC5LP ADC. Vi vil undersøge støj i kredsløbet og i ADC'en i PSoC'en.
 
-I kredsløbet nedenfor på \cref{fig:kreds1} har vi forskellige støjkilder, som der skal tages højde for. Udgangssignalet til effektforstærkeren vil vi føre ind i PSoC'en og tilslutte ADC'en og efterfølgende et lavpasfilter med en båndbredde på 50 kHz, hvilket ca. vil svare til båndbredden for vores effektforstærker.
+I kredsløbet nedenfor på \cref{fig:kreds1} har vi forskellige støjkilder, som der skal tages højde for. Udgangssignalet til effektforstærkeren vil vi føre ind i PSoC'en og tilslutte ADC'en og efterfølgende et lavpasfilter med en båndbredde på 20 kHz, hvilket ca. vil svare til båndbredden for vores effektforstærker.
 
 Vores kredsløb er som udgangspunkt påvirket af et variabelt filter, som sidder før kredsløbet. Vi ved ikke hvor stor støjtætheden er for filterkredsløbet. For overskuelighedens skyld, vælger vi at tage udgangspunkt i at der ingen støj kommer fra filterkredsløbet. På denne måde kan vi regne støjen fra vores eget kredsløb og på denne måde sætte et krav til filterkredsløbet, så at støjen derfra ikke har nogen betydning. Hvis støjbidraget fra filterkredsløbet er $\frac{1}{3}$ af støjtætheden fra vores kredsløb, vil det kun have meget lille betydning.
 
@@ -156,7 +156,8 @@ De støjkilder der er relevante at regne på for vores kredsløb er:
 Kondensatorerne er reaktive komponenter og vil ikke have en påvirkning på støjen. Kun kondensatorernes reelle impedans vil have en indvirkning, men den er så lille at vi kan se bort fra den. Typisk 0.1 $\Omega$.
 R5's støjbidrag vælger vi at se bort fra da vores opamp har den funktion at den vedligeholder udgangsspændingen, og dermed er støjen her reguleret af OpAmpen.
 
-For at vi til sidst kan finde vores worst-case scenario, skal vi finde den begrænsende båndbredde. Vi regner med at have en begrænsende båndbredde på 50 kHz fra vores filter i PSoC'en og vores OpAmps $\frac{1}{f}$ støj vil ikke have en kæmpe betydning for det samlede bidrag. Vi vælger dog at tage den med på en forsimplet måde. Nærmere beskrivelse følger.
+
+For at vi til sidst kan finde vores worst-case scenario, skal vi finde den begrænsende båndbredde. Vi regner med at have en begrænsende båndbredde på 20 kHz fra vores filter i PSoC'en og vores OpAmps $\frac{1}{f}$ støj vil ikke have en kæmpe betydning for det samlede bidrag. Vi vælger dog at tage den med på en forsimplet måde. Nærmere beskrivelse følger.
 
 Når vi nu kender de interessante støjbidrag, kan vi regne kredsløbet igennem for at finde den resulterende støj.
 
@@ -172,115 +173,72 @@ Dette resulterer i at alle vores støjtætheds bidrag før U1B vil ganges med 0.
 	\caption{Forstærker kredsløb}
 	\label{fig:kreds1}
 \end{figure}
-Figur \ref{fig:kreds1} viser kredsløbet for vores forstærker. Forstærkerens gain faktor varieres fra afstandssensoren R3, men i vores testopstilling har vi en fast gainfaktor for U1B på 0.2. R3 = 5 $\si{\kilo\Omega}$. R4 = 1 $\si{\kilo\Omega}$.
+Figur \ref{fig:kreds1} viser kredsløbet for vores forstærker. Forstærkerens gain faktor varieres fra afstandssensoren R3, men i vores testopstilling har vi en fast gainfaktor for U1B på 0.2, da dette vil være vores worst case scenario. R3 = 5 $\si{\kilo\Omega}$. R4 = 1 $\si{\kilo\Omega}$.
 
 
 
-\subsection{Støj fra variabel modstand R1 og R2}
+
+\subsection{Støj fra modstandene R1, R2, R3 og R4}
+
+
+\begin{figure}[ht] % (alternativt [H])
+	\centering
+	\includegraphics[width=0.5\textwidth]{figure/modstandsstoej}
+	\caption{Støj fra modstandene}
+	\label{fig:modstandsstoej}
+\end{figure}
 
 
 
-\begin{align*}
-V\tsub{rms\_tæthed} &= \sqrt{4 \cdot k \cdot T \cdot R}
-\\[2.0ex]
-&= \sqrt{4 \cdot k\cdot \SI{313}{\kelvin} \cdot \SI{10}{\kilo\ohm}}
-\\[2.0ex]
-&= \SI{18.7}{\nano\voltnoise}
-\\[2.0ex]
-V\tsub{rms\_forstærket} &= \SI{18.7}{\nano\voltnoise} \cdot 50
-\\[2.0ex]
-&= \SI{935}{\nano\voltnoise}
-\end{align*}
+\subsection{Støj fra OpAmp U1A og U1B}
+
+Støj fra opamps beregnes. OpAmp U1A har en gain faktor på 1, og vi kan derfor tage dens støjbidrag direkte fra databladet. Opamp U1B, har en gain faktor på 1.2 da den beregnes ud fra formlen
+$1 + \frac{R_4}{R_3}$
+
+\begin{figure}[ht] % (alternativt [H])
+	\centering
+	\includegraphics[width=0.8\textwidth]{figure/opampstoej}
+	\caption{Støj fra OpAmps}
+	\label{fig:opampstoej}
+\end{figure}
 
 
 
-\subsection{Støj fra OpAmp U1A}
-
-
-\begin{align*}
-e\tsub{n} &= \SI{16}{\nano\voltnoise}
-\\[2.0ex]
-GBP &= \SI{16}{\mega\hertz}
-\\[2.0ex]
-B &= \frac{ \SI{16}{\mega\hertz}}{\SI{1}{\volt\per\volt}} = \SI{16}{\mega\hertz}
-\\[2.0ex]
-V\tsub{o\_rms} &= \left| A_1\cdot A_2 \cdot e\tsub{n} \right| \cdot \sqrt{B}
-\\[2.0ex]
-&= \SI{1}{\volt\per\volt} \cdot \SI{0.2}{\volt\per\volt} \cdot \SI{16}{\nano\voltnoise} \cdot \sqrt{\SI{16}{\mega\hertz}}
-\\[2.0ex]
-&= \SI{0.013}{\milli\volt}
-\end{align*}
-
-
-\subsection{Støj fra modstand R3}
 
 
 
-\begin{align*}
-V\tsub{rms\_tæthed} &= \sqrt{4 \cdot k \cdot T \cdot R}
-\\[2.0ex]
-&= \sqrt{4 \cdot k\cdot \SI{313}{\kelvin} \cdot \SI{10}{\kilo\ohm}}
-\\[2.0ex]
-&= \SI{18.7}{\nano\voltnoise}
-\\[2.0ex]
-V\tsub{rms\_forstærket} &= \SI{18.7}{\nano\voltnoise} \cdot 50
-\\[2.0ex]
-&= \SI{935}{\nano\voltnoise}
-\end{align*}
-
-
-\subsection{Støj fra OpAmp U1B}
-
-
-
-VÆRDIER IKKE REDIGERET ENDNU
-
-\begin{align*}
-e\tsub{n} &= \SI{43}{\nano\voltnoise}
-\\[2.0ex]
-B &= \frac{ \SI{10}{\mega\hertz}}{\SI{50}{\volt\per\volt}}
-\\[2.0ex]
-&= \SI{180}{\kilo\hertz}
-\\[2.0ex]
-V\tsub{o\_rms} &= \left| A_1\cdot A_2 \cdot e\tsub{n} \right| \cdot \sqrt{B}
-\\[2.0ex]
-&= \SI{50}{\volt\per\volt} \cdot \SI{15}{\volt\per\volt} \cdot \SI{43}{\nano\voltnoise} \cdot \sqrt{\SI{180}{\kilo\hertz}}
-\\[2.0ex]
-&= \SI{13.7}{\milli\volt}
-\end{align*}
-
-
-\subsection{Støj fra modstand R4}
-
-\begin{align*}
-V\tsub{rms\_tæthed} &= \sqrt{4 \cdot k \cdot T \cdot R}
-\\[2.0ex]
-&= \sqrt{4 \cdot k\cdot \SI{313}{\kelvin} \cdot \SI{10}{\kilo\ohm}}
-\\[2.0ex]
-&= \SI{18.7}{\nano\voltnoise}
-\\[2.0ex]
-V\tsub{rms\_forstærket} &= \SI{18.7}{\nano\voltnoise} \cdot 50
-\\[2.0ex]
-&= \SI{935}{\nano\voltnoise}
-\end{align*}
 
 
 
 \subsection{Samlet støjbidrag før U1B}
 
-her lægges sammen og ganges med 0.2.
+Støjbidragene før OpAmp U1B (fra R1, R2, U1A og R3) bliver allesammen dæmpet med faktoren 0.2.
+Vi kan summere de kvadrerede støjbidrag og tage roden af dette for at få det samlede bidrag.
+Dermed får vi dette støjbidrag før OpAmp U1B:
+
+\begin{figure}[ht] % (alternativt [H])
+	\centering
+	\includegraphics[width=0.8\textwidth]{figure/foerU1b}
+	\caption{Støj før U1B}
+	\label{foerU1b}
+\end{figure}
 
 
 
 \subsection{Samlet støjbidrag før ADC}
 
 
-Vi kan nu finde det samlede støjbidrag, før ADC'en og opstille vores krav:
+Vi kan nu finde det samlede støjbidrag, før ADC'en og opstille vores krav for filteret:
 
-\begin{align*}
-V\tsub{rmstotal} &= \sqrt{\SI{12}{\milli\volt^2} + \SI{12}{\milli\volt^2} + \SI{12}{\milli\volt^2}} = \SI{36}{\milli\volt}
-\end{align*}
+\begin{figure}[ht] % (alternativt [H])
+	\centering
+	\includegraphics[width=0.8\textwidth]{figure/samletstoej}
+	\caption{Samlet støj før ADC}
+	\label{samletstoej}
+\end{figure}
 
+
+Vi kan nu se på hvilke støjbidrag der rent faktisk har noget at sige for vores samlede støjbidrag. Vi kan ud fra \cref{foerU1b} konkluderer at dette støjbidrag rent faktisk ER af betydning ift. vores samlede støjbidrag før ADC'en, da denne værdi ligger i omegnen af de bidrag der bliver lagt sammen i \cref{samletstoej}. Hvis vi går endnu en tand længere tilbage i kredsløbet kan vi se at bidragene fra $\epsilon_{nU1B}$ og $\epsilon_{nU1A}$ og $R3_{taethed}$ er af ca. samme størrelse, så her kan vi ikke se bort fra nogle af dem. Der er altså ikke nogen bidrag vi kan ignorere totalt, når vi kigger på støj før ADC'en.
 
 \subsection{Støj fra ADC'en}
 
