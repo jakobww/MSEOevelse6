@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.12)  30 NOV 2016 12:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.7.12)  1 DEC 2016 11:53
 entering extended mode
 **./ovelse_6.tex
 (ovelse_6.tex
@@ -1593,11 +1593,11 @@ File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 145.
 
-<figure/kreds1.png, id=1, 882.29625pt x 339.51843pt>
+<figure/kreds1.png, id=1, 687.31781pt x 274.77657pt>
 File: figure/kreds1.png Graphic file (type png)
  <use figure/kreds1.png>
 Package pdftex.def Info: figure/kreds1.png used on input line 163.
-(pdftex.def)             Requested size: 380.69788pt x 146.49777pt.
+(pdftex.def)             Requested size: 380.69788pt x 152.19252pt.
 
 [1
 
@@ -1614,11 +1614,11 @@ FiXme Summary: Number of notes: 0,
 Package cleveref Info: loaded `danish' language definitions on input line 4.
 ) ) 
 Here is how much of TeX's memory you used:
- 24635 strings out of 493335
- 449960 string characters out of 3139263
+ 24633 strings out of 493335
+ 449940 string characters out of 3139263
  584248 words of memory out of 3000000
  27840 multiletter control sequences out of 15000+200000
- 66921 words of font info for 78 fonts, out of 3000000 for 9000
+ 66838 words of font info for 77 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,92p,10361b,909s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Fi
@@ -1631,7 +1631,7 @@ ic/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/public/lm/lmsy10.pfb>
-Output written on ovelse_6.pdf (3 pages, 164312 bytes).
+Output written on ovelse_6.pdf (3 pages, 127893 bytes).
 PDF statistics:
  52 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

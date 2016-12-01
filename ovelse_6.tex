@@ -149,7 +149,7 @@ De støjkilder der er relevante at regne på for vores kredsløb er:
 \end{itemize}
 
 Kondensatorerne er reaktive komponenter og vil ikke have en påvirkning på støjen. Kun kondensatorernes reelle impedans vil have en indvirkning, men den er så lille at vi kan se bort fra den. Typisk 0.1 $\Omega$.
-Pull-down modstandene kan vi endvidere se bort fra da de er trukket til ground og dermed kortsluttet ift. vores indgangssignal (som vi her ser bort fra). Derudover kan vi se bort fra R4's støj dels fordi den er meget lav, men også fordi dens bidrag ikke forstærkes op.
+Pull-down modstandene kan vi endvidere se bort fra da de er trukket til ground og dermed kortsluttet ift. vores indgangssignal (som vi her ser bort fra). 
 
 Vi regner med at have en begrænsende båndbredde på 50 kHz og vores OpAmps $\frac{1}{f}$ støj vil ikke have en kæmpe betydning for det samlede bidrag. Vi vælger dog at tage den med på en forsimplet måde. Nærmere beskrivelse følger.
 
@@ -168,12 +168,16 @@ Figur \ref{fig:kreds1} viser kredsløbet for vores variabel forstærker. Forstæ
 
 Først regnes støjen fra opamp U1A. Denne støj bliver forstærket op af OpAmp U1B. Herefter ses på bidraget fra R3 alene, som også bliver forstærket op a U1B. Dernæst ser vi på bidraget fra U1B alene. Disse 3 værdier kvardreres, summeres og vi tager roden af dem, for at finde det samlede bidrag før ADC'en. Sidst regnes det samlede støjbidrag, som vi nu kan sammenligne vores simulering og realisering med.
 
-\subsection{Støj fra OpAmp U1A}
+\subsection{Støj fra modstande}
 
-
-VÆRDIER IKKE REDIGERET ENDNU
 
 \begin{align*}
+	
+	
+	
+	
+	
+	
 e\tsub{n} &= \SI{43}{\nano\voltnoise}
 \\[2.0ex]
 B &= \frac{ \SI{10}{\mega\hertz}}{\SI{50}{\volt\per\volt}}
