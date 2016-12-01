@@ -228,7 +228,7 @@ Dermed får vi dette støjbidrag før OpAmp U1B:
 \subsection{Samlet støjbidrag før ADC}
 
 
-Vi kan nu finde det samlede støjbidrag, før ADC'en og opstille vores krav for filteret:
+Vi kan nu finde det samlede støjbidrag, før ADC'en og opstille vores krav for filteret. Vi vælger at opstille kravet for filteret ved dette punkt, da vi i vores projekt ikke har ADC'en med.
 
 \begin{figure}[ht] % (alternativt [H])
 	\centering
@@ -238,13 +238,22 @@ Vi kan nu finde det samlede støjbidrag, før ADC'en og opstille vores krav for 
 \end{figure}
 
 
-Vi kan nu se på hvilke støjbidrag der rent faktisk har noget at sige for vores samlede støjbidrag. Vi kan ud fra \cref{foerU1b} konkluderer at dette støjbidrag rent faktisk ER af betydning ift. vores samlede støjbidrag før ADC'en, da denne værdi ligger i omegnen af de bidrag der bliver lagt sammen i \cref{samletstoej}. Hvis vi går endnu en tand længere tilbage i kredsløbet kan vi se at bidragene fra $\epsilon_{nU1B}$ og $\epsilon_{nU1A}$ og $R3_{taethed}$ er af ca. samme størrelse, så her kan vi ikke se bort fra nogle af dem. Der er altså ikke nogen bidrag vi kan ignorere totalt, når vi kigger på støj før ADC'en.
+Vi kan nu se på hvilke støjbidrag der rent faktisk har noget at sige for vores samlede støjbidrag. Vi kan ud fra \cref{foerU1b} konkluderer at dette støjbidrag rent faktisk er af betydning ift. vores samlede støjbidrag før ADC'en, da denne værdi ligger i omegnen af de bidrag der bliver lagt sammen i \cref{samletstoej}. Dermed bliver vi nødt til at betragte hvilke bidrag der betyder noget for $\epsilon_{foerU1B}$ (\cref{foerU1b}). Hvis vi går endnu en tand længere tilbage i kredsløbet kan vi se at bidragene fra $\epsilon_{nU1A}$, $R3_{taethed}$ og $\epsilon_{12taethed}$ er af meget forskellig størrelse. Støjbidraget fra $\epsilon_{12taethed}$ er væsentligt (over 3 gange) større end de andre størrelser og dermed kan vi se bort fra $\epsilon_{nU1A}$ og $R3_{taethed}$.
+
+Vi kan også konkludere at $R4_{taethed}$ er væsentligt lavere end $\epsilon_{foerU1B}$ og $\epsilon_{nU1B}$. Vi kan altså også se væk fra $R4_{taethed}$.
+
 
 \subsection{Støj fra ADC'en}
 
+Vi ser nu på støjen fra ADC'en. Vi får oplyst at støjbidraget fra ADC'en er $\SI{603}{\frac{\nano\volt}{\sqrt{\hertz}}}$. Dette er langt over støjbidraget hidtil, og dermed kan vi se bort fra al støj som hidtil og udelukkende tage udgangspunkt i støjen fra ADC'en. Dermed kan vi også se bort fra $\frac{1}{f}$ støjen.
 
+\clearpage
 
+\subsection{Samlet $V_{rms}$ støj}
 
+Den begrænsende båndbredde er, som nævnt ovenfor, $\SI{20}{\kilo\hertz}$. Vi bruger nu denne båndbredde til at beregne den samlede $V_{rms}$ støj. 
+
+$V\tsub{rms} = e\tsub{adc} \cdot \sqrt{B} = \SI{85.39}{\micro\volt}$
 
 \section{Simulering}
 
