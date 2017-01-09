@@ -1,0 +1,1716 @@
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	V_Sample,2,4
+  19              		.global	V_Sample_SUM_1
+  20              		.bss
+  21              		.align	2
+  22              		.type	V_Sample_SUM_1, %object
+  23              		.size	V_Sample_SUM_1, 4
+  24              	V_Sample_SUM_1:
+  25 0000 00000000 		.space	4
+  26              		.global	V_Sample_SUM_2
+  27              		.align	2
+  28              		.type	V_Sample_SUM_2, %object
+  29              		.size	V_Sample_SUM_2, 4
+  30              	V_Sample_SUM_2:
+  31 0004 00000000 		.space	4
+  32              		.global	V_Sample_MIN
+  33              		.align	1
+  34              		.type	V_Sample_MIN, %object
+  35              		.size	V_Sample_MIN, 2
+  36              	V_Sample_MIN:
+  37 0008 0000     		.space	2
+  38              		.global	V_Sample_MAX
+  39              		.align	1
+  40              		.type	V_Sample_MAX, %object
+  41              		.size	V_Sample_MAX, 2
+  42              	V_Sample_MAX:
+  43 000a 0000     		.space	2
+  44              		.global	V_Sample_AVG
+  45              		.align	1
+  46              		.type	V_Sample_AVG, %object
+  47              		.size	V_Sample_AVG, 2
+  48              	V_Sample_AVG:
+  49 000c 0000     		.space	2
+  50              		.global	V_Sample_VAR
+  51 000e 0000     		.align	2
+  52              		.type	V_Sample_VAR, %object
+  53              		.size	V_Sample_VAR, 4
+  54              	V_Sample_VAR:
+  55 0010 00000000 		.space	4
+  56              		.global	V_Sample_AVG_float
+  57              		.align	2
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 2
+
+
+  58              		.type	V_Sample_AVG_float, %object
+  59              		.size	V_Sample_AVG_float, 4
+  60              	V_Sample_AVG_float:
+  61 0014 00000000 		.space	4
+  62              		.global	V_Sample_PP_float
+  63              		.align	2
+  64              		.type	V_Sample_PP_float, %object
+  65              		.size	V_Sample_PP_float, 4
+  66              	V_Sample_PP_float:
+  67 0018 00000000 		.space	4
+  68              		.global	V_Sample_RMS_float
+  69              		.align	2
+  70              		.type	V_Sample_RMS_float, %object
+  71              		.size	V_Sample_RMS_float, 4
+  72              	V_Sample_RMS_float:
+  73 001c 00000000 		.space	4
+  74              		.global	i
+  75              		.align	1
+  76              		.type	i, %object
+  77              		.size	i, 2
+  78              	i:
+  79 0020 0000     		.space	2
+  80 0022 0000     		.section	.text.DMA_1_Config,"ax",%progbits
+  81              		.align	2
+  82              		.global	DMA_1_Config
+  83              		.thumb
+  84              		.thumb_func
+  85              		.type	DMA_1_Config, %function
+  86              	DMA_1_Config:
+  87              	.LFB63:
+  88              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include <math.h>
+  14:.\main.c      **** 
+  15:.\main.c      **** #define n 1
+  16:.\main.c      **** #define N_Sample 10
+  17:.\main.c      **** 
+  18:.\main.c      **** int16 	V_Sample[n];
+  19:.\main.c      **** int32 	V_Sample_SUM_1=0;
+  20:.\main.c      **** float 	V_Sample_SUM_2=0;
+  21:.\main.c      **** int16 	V_Sample_MIN=0;
+  22:.\main.c      **** int16 	V_Sample_MAX=0;
+  23:.\main.c      **** int16 	V_Sample_AVG=0;
+  24:.\main.c      **** float 	V_Sample_VAR=0;
+  25:.\main.c      **** float 	V_Sample_AVG_float=0;
+  26:.\main.c      **** float 	V_Sample_PP_float=0;
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 3
+
+
+  27:.\main.c      **** float 	V_Sample_RMS_float=0;
+  28:.\main.c      **** uint16 	i=0;
+  29:.\main.c      **** 
+  30:.\main.c      **** void DMA_1_Config()
+  31:.\main.c      **** {
+  89              		.loc 1 31 0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 8
+  92              		@ frame_needed = 1, uses_anonymous_args = 0
+  93 0000 80B5     		push	{r7, lr}
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 7, -8
+  96              		.cfi_offset 14, -4
+  97 0002 82B0     		sub	sp, sp, #8
+  98              		.cfi_def_cfa_offset 16
+  99 0004 00AF     		add	r7, sp, #0
+ 100              		.cfi_def_cfa_register 7
+  32:.\main.c      **** 	/* Variable declarations for DMA_1 */
+  33:.\main.c      **** 	/* Move these variable declarations to the top of the function */
+  34:.\main.c      **** 	uint8 DMA_1_Chan;
+  35:.\main.c      **** 	uint8 DMA_1_TD[1];
+  36:.\main.c      **** 
+  37:.\main.c      **** 	/* DMA Configuration for DMA_1 */
+  38:.\main.c      **** 	#define DMA_1_BYTES_PER_BURST 2
+  39:.\main.c      **** 	#define DMA_1_REQUEST_PER_BURST 1
+  40:.\main.c      **** 	#define DMA_1_SRC_BASE (CYDEV_PERIPH_BASE)
+  41:.\main.c      **** 	#define DMA_1_DST_BASE (CYDEV_PERIPH_BASE)
+  42:.\main.c      **** 	DMA_1_Chan = DMA_1_DmaInitialize(DMA_1_BYTES_PER_BURST, DMA_1_REQUEST_PER_BURST, 
+ 101              		.loc 1 42 0
+ 102 0006 0220     		movs	r0, #2
+ 103 0008 0121     		movs	r1, #1
+ 104 000a 4FF48042 		mov	r2, #16384
+ 105 000e 4FF48043 		mov	r3, #16384
+ 106 0012 FFF7FEFF 		bl	DMA_1_DmaInitialize
+ 107 0016 0346     		mov	r3, r0
+ 108 0018 FB71     		strb	r3, [r7, #7]
+  43:.\main.c      **** 	    HI16(DMA_1_SRC_BASE), HI16(DMA_1_DST_BASE));
+  44:.\main.c      **** 	DMA_1_TD[0] = CyDmaTdAllocate();
+ 109              		.loc 1 44 0
+ 110 001a FFF7FEFF 		bl	CyDmaTdAllocate
+ 111 001e 0346     		mov	r3, r0
+ 112 0020 3B71     		strb	r3, [r7, #4]
+  45:.\main.c      **** 	CyDmaTdSetConfiguration(DMA_1_TD[0], 2, DMA_INVALID_TD, TD_INC_DST_ADR);
+ 113              		.loc 1 45 0
+ 114 0022 3B79     		ldrb	r3, [r7, #4]	@ zero_extendqisi2
+ 115 0024 1846     		mov	r0, r3
+ 116 0026 0221     		movs	r1, #2
+ 117 0028 FF22     		movs	r2, #255
+ 118 002a 0223     		movs	r3, #2
+ 119 002c FFF7FEFF 		bl	CyDmaTdSetConfiguration
+  46:.\main.c      **** 	CyDmaTdSetAddress(DMA_1_TD[0], LO16((uint32)ADC_DelSig_1_DEC_SAMP_PTR), LO16((uint32)Filter_1_STAG
+ 120              		.loc 1 46 0
+ 121 0030 3B79     		ldrb	r3, [r7, #4]	@ zero_extendqisi2
+ 122 0032 1846     		mov	r0, r3
+ 123 0034 44F61061 		movw	r1, #19984
+ 124 0038 4CF2A172 		movw	r2, #51105
+ 125 003c FFF7FEFF 		bl	CyDmaTdSetAddress
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 4
+
+
+  47:.\main.c      **** 	CyDmaChSetInitialTd(DMA_1_Chan, DMA_1_TD[0]);
+ 126              		.loc 1 47 0
+ 127 0040 3B79     		ldrb	r3, [r7, #4]	@ zero_extendqisi2
+ 128 0042 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 129 0044 1046     		mov	r0, r2
+ 130 0046 1946     		mov	r1, r3
+ 131 0048 FFF7FEFF 		bl	CyDmaChSetInitialTd
+  48:.\main.c      **** 	CyDmaChEnable(DMA_1_Chan, 1);
+ 132              		.loc 1 48 0
+ 133 004c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 134 004e 1846     		mov	r0, r3
+ 135 0050 0121     		movs	r1, #1
+ 136 0052 FFF7FEFF 		bl	CyDmaChEnable
+  49:.\main.c      **** }
+ 137              		.loc 1 49 0
+ 138 0056 0837     		adds	r7, r7, #8
+ 139              		.cfi_def_cfa_offset 8
+ 140 0058 BD46     		mov	sp, r7
+ 141              		.cfi_def_cfa_register 13
+ 142              		@ sp needed
+ 143 005a 80BD     		pop	{r7, pc}
+ 144              		.cfi_endproc
+ 145              	.LFE63:
+ 146              		.size	DMA_1_Config, .-DMA_1_Config
+ 147              		.section	.text.DMA_2_Config,"ax",%progbits
+ 148              		.align	2
+ 149              		.global	DMA_2_Config
+ 150              		.thumb
+ 151              		.thumb_func
+ 152              		.type	DMA_2_Config, %function
+ 153              	DMA_2_Config:
+ 154              	.LFB64:
+  50:.\main.c      **** 
+  51:.\main.c      **** void DMA_2_Config()
+  52:.\main.c      **** {
+ 155              		.loc 1 52 0
+ 156              		.cfi_startproc
+ 157              		@ args = 0, pretend = 0, frame = 8
+ 158              		@ frame_needed = 1, uses_anonymous_args = 0
+ 159 0000 80B5     		push	{r7, lr}
+ 160              		.cfi_def_cfa_offset 8
+ 161              		.cfi_offset 7, -8
+ 162              		.cfi_offset 14, -4
+ 163 0002 82B0     		sub	sp, sp, #8
+ 164              		.cfi_def_cfa_offset 16
+ 165 0004 00AF     		add	r7, sp, #0
+ 166              		.cfi_def_cfa_register 7
+  53:.\main.c      **** /* Variable declarations for DMA_2 */
+  54:.\main.c      **** /* Move these variable declarations to the top of the function */
+  55:.\main.c      **** uint8 DMA_2_Chan;
+  56:.\main.c      **** uint8 DMA_2_TD[1];
+  57:.\main.c      **** 
+  58:.\main.c      **** /* DMA Configuration for DMA_2 */
+  59:.\main.c      **** #define DMA_2_BYTES_PER_BURST 2
+  60:.\main.c      **** #define DMA_2_REQUEST_PER_BURST 1
+  61:.\main.c      **** #define DMA_2_SRC_BASE (CYDEV_PERIPH_BASE)
+  62:.\main.c      **** #define DMA_2_DST_BASE (CYDEV_SRAM_BASE)
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 5
+
+
+  63:.\main.c      **** DMA_2_Chan = DMA_2_DmaInitialize(DMA_2_BYTES_PER_BURST, DMA_2_REQUEST_PER_BURST, 
+ 167              		.loc 1 63 0
+ 168 0006 0220     		movs	r0, #2
+ 169 0008 0121     		movs	r1, #1
+ 170 000a 4FF48042 		mov	r2, #16384
+ 171 000e 41F6FF73 		movw	r3, #8191
+ 172 0012 FFF7FEFF 		bl	DMA_2_DmaInitialize
+ 173 0016 0346     		mov	r3, r0
+ 174 0018 FB71     		strb	r3, [r7, #7]
+  64:.\main.c      ****     HI16(DMA_2_SRC_BASE), HI16(DMA_2_DST_BASE));
+  65:.\main.c      **** DMA_2_TD[0] = CyDmaTdAllocate();
+ 175              		.loc 1 65 0
+ 176 001a FFF7FEFF 		bl	CyDmaTdAllocate
+ 177 001e 0346     		mov	r3, r0
+ 178 0020 3B71     		strb	r3, [r7, #4]
+  66:.\main.c      **** CyDmaTdSetConfiguration(DMA_2_TD[0], 2, DMA_INVALID_TD,  DMA_2__TD_TERMOUT_EN | TD_INC_SRC_ADR );
+ 179              		.loc 1 66 0
+ 180 0022 3B79     		ldrb	r3, [r7, #4]	@ zero_extendqisi2
+ 181 0024 1846     		mov	r0, r3
+ 182 0026 0221     		movs	r1, #2
+ 183 0028 FF22     		movs	r2, #255
+ 184 002a 0523     		movs	r3, #5
+ 185 002c FFF7FEFF 		bl	CyDmaTdSetConfiguration
+  67:.\main.c      **** CyDmaTdSetAddress(DMA_2_TD[0], LO16((uint32)Filter_1_HOLDAM_PTR), LO16((uint32)V_Sample));
+ 186              		.loc 1 67 0
+ 187 0030 3A79     		ldrb	r2, [r7, #4]	@ zero_extendqisi2
+ 188 0032 0B4B     		ldr	r3, .L3
+ 189 0034 9BB2     		uxth	r3, r3
+ 190 0036 1046     		mov	r0, r2
+ 191 0038 4CF2A971 		movw	r1, #51113
+ 192 003c 1A46     		mov	r2, r3
+ 193 003e FFF7FEFF 		bl	CyDmaTdSetAddress
+  68:.\main.c      **** CyDmaChSetInitialTd(DMA_2_Chan, DMA_2_TD[0]);
+ 194              		.loc 1 68 0
+ 195 0042 3B79     		ldrb	r3, [r7, #4]	@ zero_extendqisi2
+ 196 0044 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 197 0046 1046     		mov	r0, r2
+ 198 0048 1946     		mov	r1, r3
+ 199 004a FFF7FEFF 		bl	CyDmaChSetInitialTd
+  69:.\main.c      **** CyDmaChEnable(DMA_2_Chan, 1);
+ 200              		.loc 1 69 0
+ 201 004e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 202 0050 1846     		mov	r0, r3
+ 203 0052 0121     		movs	r1, #1
+ 204 0054 FFF7FEFF 		bl	CyDmaChEnable
+  70:.\main.c      **** 
+  71:.\main.c      **** }
+ 205              		.loc 1 71 0
+ 206 0058 0837     		adds	r7, r7, #8
+ 207              		.cfi_def_cfa_offset 8
+ 208 005a BD46     		mov	sp, r7
+ 209              		.cfi_def_cfa_register 13
+ 210              		@ sp needed
+ 211 005c 80BD     		pop	{r7, pc}
+ 212              	.L4:
+ 213 005e 00BF     		.align	2
+ 214              	.L3:
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 6
+
+
+ 215 0060 00000000 		.word	V_Sample
+ 216              		.cfi_endproc
+ 217              	.LFE64:
+ 218              		.size	DMA_2_Config, .-DMA_2_Config
+ 219              		.section	.text.DAC_int,"ax",%progbits
+ 220              		.align	2
+ 221              		.global	DAC_int
+ 222              		.thumb
+ 223              		.thumb_func
+ 224              		.type	DAC_int, %function
+ 225              	DAC_int:
+ 226              	.LFB65:
+  72:.\main.c      **** 
+  73:.\main.c      **** CY_ISR(DAC_int)
+  74:.\main.c      **** {
+ 227              		.loc 1 74 0
+ 228              		.cfi_startproc
+ 229              		@ args = 0, pretend = 0, frame = 0
+ 230              		@ frame_needed = 1, uses_anonymous_args = 0
+ 231 0000 80B5     		push	{r7, lr}
+ 232              		.cfi_def_cfa_offset 8
+ 233              		.cfi_offset 7, -8
+ 234              		.cfi_offset 14, -4
+ 235 0002 00AF     		add	r7, sp, #0
+ 236              		.cfi_def_cfa_register 7
+  75:.\main.c      **** 	test_01_Write(1);
+ 237              		.loc 1 75 0
+ 238 0004 0120     		movs	r0, #1
+ 239 0006 FFF7FEFF 		bl	test_01_Write
+  76:.\main.c      **** 	VDAC8_1_Data = ((int8)(V_Sample[0] >> 8))+156;
+ 240              		.loc 1 76 0
+ 241 000a 074A     		ldr	r2, .L6
+ 242 000c 074B     		ldr	r3, .L6+4
+ 243 000e 1B88     		ldrh	r3, [r3]
+ 244 0010 1BB2     		sxth	r3, r3
+ 245 0012 1B12     		asrs	r3, r3, #8
+ 246 0014 9BB2     		uxth	r3, r3
+ 247 0016 DBB2     		uxtb	r3, r3
+ 248 0018 643B     		subs	r3, r3, #100
+ 249 001a DBB2     		uxtb	r3, r3
+ 250 001c 1370     		strb	r3, [r2]
+  77:.\main.c      **** 	test_01_Write(0);
+ 251              		.loc 1 77 0
+ 252 001e 0020     		movs	r0, #0
+ 253 0020 FFF7FEFF 		bl	test_01_Write
+  78:.\main.c      **** }
+ 254              		.loc 1 78 0
+ 255 0024 80BD     		pop	{r7, pc}
+ 256              	.L7:
+ 257 0026 00BF     		.align	2
+ 258              	.L6:
+ 259 0028 835B0040 		.word	1073765251
+ 260 002c 00000000 		.word	V_Sample
+ 261              		.cfi_endproc
+ 262              	.LFE65:
+ 263              		.size	DAC_int, .-DAC_int
+ 264              		.global	__aeabi_i2f
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 7
+
+
+ 265              		.global	__aeabi_fmul
+ 266              		.global	__aeabi_fadd
+ 267              		.section	.text.Sample_int,"ax",%progbits
+ 268              		.align	2
+ 269              		.global	Sample_int
+ 270              		.thumb
+ 271              		.thumb_func
+ 272              		.type	Sample_int, %function
+ 273              	Sample_int:
+ 274              	.LFB66:
+  79:.\main.c      **** 
+  80:.\main.c      **** CY_ISR(Sample_int)
+  81:.\main.c      **** {
+ 275              		.loc 1 81 0
+ 276              		.cfi_startproc
+ 277              		@ args = 0, pretend = 0, frame = 0
+ 278              		@ frame_needed = 1, uses_anonymous_args = 0
+ 279 0000 98B5     		push	{r3, r4, r7, lr}
+ 280              		.cfi_def_cfa_offset 16
+ 281              		.cfi_offset 3, -16
+ 282              		.cfi_offset 4, -12
+ 283              		.cfi_offset 7, -8
+ 284              		.cfi_offset 14, -4
+ 285 0002 00AF     		add	r7, sp, #0
+ 286              		.cfi_def_cfa_register 7
+  82:.\main.c      ****     	test_01_Write(1);
+ 287              		.loc 1 82 0
+ 288 0004 0120     		movs	r0, #1
+ 289 0006 FFF7FEFF 		bl	test_01_Write
+  83:.\main.c      **** 	Control_Reg_1_Control=0;
+ 290              		.loc 1 83 0
+ 291 000a 224B     		ldr	r3, .L11
+ 292 000c 0022     		movs	r2, #0
+ 293 000e 1A70     		strb	r2, [r3]
+  84:.\main.c      **** 	V_Sample_SUM_1=V_Sample_SUM_1+V_Sample[0];
+ 294              		.loc 1 84 0
+ 295 0010 214B     		ldr	r3, .L11+4
+ 296 0012 1B88     		ldrh	r3, [r3]
+ 297 0014 1AB2     		sxth	r2, r3
+ 298 0016 214B     		ldr	r3, .L11+8
+ 299 0018 1B68     		ldr	r3, [r3]
+ 300 001a 1344     		add	r3, r3, r2
+ 301 001c 1F4A     		ldr	r2, .L11+8
+ 302 001e 1360     		str	r3, [r2]
+  85:.\main.c      **** 	V_Sample_SUM_2=V_Sample_SUM_2+(((float)V_Sample[0])*((float)V_Sample[0]));
+ 303              		.loc 1 85 0
+ 304 0020 1D4B     		ldr	r3, .L11+4
+ 305 0022 1B88     		ldrh	r3, [r3]
+ 306 0024 1BB2     		sxth	r3, r3
+ 307 0026 1846     		mov	r0, r3
+ 308 0028 FFF7FEFF 		bl	__aeabi_i2f
+ 309 002c 0446     		mov	r4, r0
+ 310 002e 1A4B     		ldr	r3, .L11+4
+ 311 0030 1B88     		ldrh	r3, [r3]
+ 312 0032 1BB2     		sxth	r3, r3
+ 313 0034 1846     		mov	r0, r3
+ 314 0036 FFF7FEFF 		bl	__aeabi_i2f
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 8
+
+
+ 315 003a 0346     		mov	r3, r0
+ 316 003c 2046     		mov	r0, r4
+ 317 003e 1946     		mov	r1, r3
+ 318 0040 FFF7FEFF 		bl	__aeabi_fmul
+ 319 0044 0346     		mov	r3, r0
+ 320 0046 1A46     		mov	r2, r3
+ 321 0048 154B     		ldr	r3, .L11+12
+ 322 004a 1B68     		ldr	r3, [r3]	@ float
+ 323 004c 1046     		mov	r0, r2
+ 324 004e 1946     		mov	r1, r3
+ 325 0050 FFF7FEFF 		bl	__aeabi_fadd
+ 326 0054 0346     		mov	r3, r0
+ 327 0056 1A46     		mov	r2, r3
+ 328 0058 114B     		ldr	r3, .L11+12
+ 329 005a 1A60     		str	r2, [r3]	@ float
+  86:.\main.c      **** 	if(V_Sample[0]<V_Sample_MIN)V_Sample_MIN=V_Sample[0];
+ 330              		.loc 1 86 0
+ 331 005c 0E4B     		ldr	r3, .L11+4
+ 332 005e 1A88     		ldrh	r2, [r3]
+ 333 0060 104B     		ldr	r3, .L11+16
+ 334 0062 1B88     		ldrh	r3, [r3]
+ 335 0064 12B2     		sxth	r2, r2
+ 336 0066 1BB2     		sxth	r3, r3
+ 337 0068 9A42     		cmp	r2, r3
+ 338 006a 03DA     		bge	.L9
+ 339              		.loc 1 86 0 is_stmt 0 discriminator 1
+ 340 006c 0A4B     		ldr	r3, .L11+4
+ 341 006e 1A88     		ldrh	r2, [r3]
+ 342 0070 0C4B     		ldr	r3, .L11+16
+ 343 0072 1A80     		strh	r2, [r3]	@ movhi
+ 344              	.L9:
+  87:.\main.c      **** 	if(V_Sample[0]>V_Sample_MAX)V_Sample_MAX=V_Sample[0];
+ 345              		.loc 1 87 0 is_stmt 1
+ 346 0074 084B     		ldr	r3, .L11+4
+ 347 0076 1A88     		ldrh	r2, [r3]
+ 348 0078 0B4B     		ldr	r3, .L11+20
+ 349 007a 1B88     		ldrh	r3, [r3]
+ 350 007c 12B2     		sxth	r2, r2
+ 351 007e 1BB2     		sxth	r3, r3
+ 352 0080 9A42     		cmp	r2, r3
+ 353 0082 03DD     		ble	.L10
+ 354              		.loc 1 87 0 is_stmt 0 discriminator 1
+ 355 0084 044B     		ldr	r3, .L11+4
+ 356 0086 1A88     		ldrh	r2, [r3]
+ 357 0088 074B     		ldr	r3, .L11+20
+ 358 008a 1A80     		strh	r2, [r3]	@ movhi
+ 359              	.L10:
+  88:.\main.c      **** 	test_01_Write(0);
+ 360              		.loc 1 88 0 is_stmt 1
+ 361 008c 0020     		movs	r0, #0
+ 362 008e FFF7FEFF 		bl	test_01_Write
+  89:.\main.c      **** }
+ 363              		.loc 1 89 0
+ 364 0092 98BD     		pop	{r3, r4, r7, pc}
+ 365              	.L12:
+ 366              		.align	2
+ 367              	.L11:
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 9
+
+
+ 368 0094 7B640040 		.word	1073767547
+ 369 0098 00000000 		.word	V_Sample
+ 370 009c 00000000 		.word	V_Sample_SUM_1
+ 371 00a0 00000000 		.word	V_Sample_SUM_2
+ 372 00a4 00000000 		.word	V_Sample_MIN
+ 373 00a8 00000000 		.word	V_Sample_MAX
+ 374              		.cfi_endproc
+ 375              	.LFE66:
+ 376              		.size	Sample_int, .-Sample_int
+ 377              		.section	.text.Init,"ax",%progbits
+ 378              		.align	2
+ 379              		.global	Init
+ 380              		.thumb
+ 381              		.thumb_func
+ 382              		.type	Init, %function
+ 383              	Init:
+ 384              	.LFB67:
+  90:.\main.c      **** 
+  91:.\main.c      **** void Init()
+  92:.\main.c      **** {
+ 385              		.loc 1 92 0
+ 386              		.cfi_startproc
+ 387              		@ args = 0, pretend = 0, frame = 0
+ 388              		@ frame_needed = 1, uses_anonymous_args = 0
+ 389 0000 80B5     		push	{r7, lr}
+ 390              		.cfi_def_cfa_offset 8
+ 391              		.cfi_offset 7, -8
+ 392              		.cfi_offset 14, -4
+ 393 0002 00AF     		add	r7, sp, #0
+ 394              		.cfi_def_cfa_register 7
+  93:.\main.c      **** 	ADC_DelSig_1_Start();
+ 395              		.loc 1 93 0
+ 396 0004 FFF7FEFF 		bl	ADC_DelSig_1_Start
+  94:.\main.c      **** 	ADC_DelSig_1_SetCoherency(ADC_DelSig_1_COHER_MID);
+ 397              		.loc 1 94 0
+ 398 0008 0220     		movs	r0, #2
+ 399 000a FFF7FEFF 		bl	ADC_DelSig_1_SetCoherency
+  95:.\main.c      **** 	ADC_DelSig_1_StartConvert();
+ 400              		.loc 1 95 0
+ 401 000e FFF7FEFF 		bl	ADC_DelSig_1_StartConvert
+  96:.\main.c      **** 	DMA_1_Config();
+ 402              		.loc 1 96 0
+ 403 0012 FFF7FEFF 		bl	DMA_1_Config
+  97:.\main.c      **** 	Filter_1_Start();
+ 404              		.loc 1 97 0
+ 405 0016 FFF7FEFF 		bl	Filter_1_Start
+  98:.\main.c      **** 	Filter_1_SetCoherency(Filter_1_CHANNEL_A, Filter_1_KEY_HIGH);
+ 406              		.loc 1 98 0
+ 407 001a 0020     		movs	r0, #0
+ 408 001c 0221     		movs	r1, #2
+ 409 001e FFF7FEFF 		bl	Filter_1_SetCoherency
+  99:.\main.c      **** 	DMA_2_Config();
+ 410              		.loc 1 99 0
+ 411 0022 FFF7FEFF 		bl	DMA_2_Config
+ 100:.\main.c      **** 	isr_1_StartEx(DAC_int);
+ 412              		.loc 1 100 0
+ 413 0026 0648     		ldr	r0, .L14
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 10
+
+
+ 414 0028 FFF7FEFF 		bl	isr_1_StartEx
+ 101:.\main.c      **** 	VDAC8_1_Start();
+ 415              		.loc 1 101 0
+ 416 002c FFF7FEFF 		bl	VDAC8_1_Start
+ 102:.\main.c      **** 	isr_2_StartEx(Sample_int);
+ 417              		.loc 1 102 0
+ 418 0030 0448     		ldr	r0, .L14+4
+ 419 0032 FFF7FEFF 		bl	isr_2_StartEx
+ 103:.\main.c      **** 	Control_Reg_1_Control=0;
+ 420              		.loc 1 103 0
+ 421 0036 044B     		ldr	r3, .L14+8
+ 422 0038 0022     		movs	r2, #0
+ 423 003a 1A70     		strb	r2, [r3]
+ 104:.\main.c      **** }
+ 424              		.loc 1 104 0
+ 425 003c 80BD     		pop	{r7, pc}
+ 426              	.L15:
+ 427 003e 00BF     		.align	2
+ 428              	.L14:
+ 429 0040 00000000 		.word	DAC_int
+ 430 0044 00000000 		.word	Sample_int
+ 431 0048 7B640040 		.word	1073767547
+ 432              		.cfi_endproc
+ 433              	.LFE67:
+ 434              		.size	Init, .-Init
+ 435              		.global	__aeabi_fcmplt
+ 436              		.global	__aeabi_fdiv
+ 437              		.global	__aeabi_fsub
+ 438              		.global	__aeabi_f2d
+ 439              		.global	__aeabi_d2iz
+ 440              		.section	.text.main,"ax",%progbits
+ 441              		.align	2
+ 442              		.global	main
+ 443              		.thumb
+ 444              		.thumb_func
+ 445              		.type	main, %function
+ 446              	main:
+ 447              	.LFB68:
+ 105:.\main.c      **** 
+ 106:.\main.c      **** int main()
+ 107:.\main.c      **** {
+ 448              		.loc 1 107 0
+ 449              		.cfi_startproc
+ 450              		@ args = 0, pretend = 0, frame = 0
+ 451              		@ frame_needed = 1, uses_anonymous_args = 0
+ 452 0000 B0B5     		push	{r4, r5, r7, lr}
+ 453              		.cfi_def_cfa_offset 16
+ 454              		.cfi_offset 4, -16
+ 455              		.cfi_offset 5, -12
+ 456              		.cfi_offset 7, -8
+ 457              		.cfi_offset 14, -4
+ 458 0002 00AF     		add	r7, sp, #0
+ 459              		.cfi_def_cfa_register 7
+ 108:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+ 109:.\main.c      **** 	Init();
+ 460              		.loc 1 109 0
+ 461 0004 FFF7FEFF 		bl	Init
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 11
+
+
+ 110:.\main.c      **** 
+ 111:.\main.c      **** 	CyGlobalIntEnable; /* Uncomment this line to enable global interrupts. */
+ 462              		.loc 1 111 0
+ 463              	@ 111 ".\main.c" 1
+ 464 0008 62B6     		CPSIE   i
+ 465              	@ 0 "" 2
+ 466              		.thumb
+ 467              	.L23:
+ 112:.\main.c      **** 
+ 113:.\main.c      ****     for(;;)
+ 114:.\main.c      ****     {
+ 115:.\main.c      ****         /* Place your application code here. */
+ 116:.\main.c      **** 
+ 117:.\main.c      **** 		V_Sample_SUM_1=0;
+ 468              		.loc 1 117 0
+ 469 000a 514B     		ldr	r3, .L26
+ 470 000c 0022     		movs	r2, #0
+ 471 000e 1A60     		str	r2, [r3]
+ 118:.\main.c      **** 		V_Sample_SUM_2=0;
+ 472              		.loc 1 118 0
+ 473 0010 504B     		ldr	r3, .L26+4
+ 474 0012 4FF00002 		mov	r2, #0
+ 475 0016 1A60     		str	r2, [r3]	@ float
+ 119:.\main.c      **** 		V_Sample_MIN= ((1<<15)-1) ; // int: ((1<<15)-1) uint: 0-1 
+ 476              		.loc 1 119 0
+ 477 0018 4F4B     		ldr	r3, .L26+8
+ 478 001a 47F6FF72 		movw	r2, #32767
+ 479 001e 1A80     		strh	r2, [r3]	@ movhi
+ 120:.\main.c      **** 		V_Sample_MAX=1 << 15;       // int: 1<<15       uint: 0
+ 480              		.loc 1 120 0
+ 481 0020 4E4B     		ldr	r3, .L26+12
+ 482 0022 4FF40042 		mov	r2, #32768
+ 483 0026 1A80     		strh	r2, [r3]	@ movhi
+ 121:.\main.c      **** 		for(i=0;i<(1 << (N_Sample));i++)
+ 484              		.loc 1 121 0
+ 485 0028 4D4B     		ldr	r3, .L26+16
+ 486 002a 0022     		movs	r2, #0
+ 487 002c 1A80     		strh	r2, [r3]	@ movhi
+ 488 002e 0EE0     		b	.L17
+ 489              	.L19:
+ 122:.\main.c      **** 		{
+ 123:.\main.c      **** 			Control_Reg_1_Control=1;
+ 490              		.loc 1 123 0
+ 491 0030 4C4B     		ldr	r3, .L26+20
+ 492 0032 0122     		movs	r2, #1
+ 493 0034 1A70     		strb	r2, [r3]
+ 124:.\main.c      **** 			while(Control_Reg_1_Control); 
+ 494              		.loc 1 124 0
+ 495 0036 00BF     		nop
+ 496              	.L18:
+ 497              		.loc 1 124 0 is_stmt 0 discriminator 1
+ 498 0038 4A4B     		ldr	r3, .L26+20
+ 499 003a 1B78     		ldrb	r3, [r3]
+ 500 003c DBB2     		uxtb	r3, r3
+ 501 003e 002B     		cmp	r3, #0
+ 502 0040 FAD1     		bne	.L18
+ 121:.\main.c      **** 		for(i=0;i<(1 << (N_Sample));i++)
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 12
+
+
+ 503              		.loc 1 121 0 is_stmt 1 discriminator 2
+ 504 0042 474B     		ldr	r3, .L26+16
+ 505 0044 1B88     		ldrh	r3, [r3]
+ 506 0046 0133     		adds	r3, r3, #1
+ 507 0048 9AB2     		uxth	r2, r3
+ 508 004a 454B     		ldr	r3, .L26+16
+ 509 004c 1A80     		strh	r2, [r3]	@ movhi
+ 510              	.L17:
+ 121:.\main.c      **** 		for(i=0;i<(1 << (N_Sample));i++)
+ 511              		.loc 1 121 0 is_stmt 0 discriminator 1
+ 512 004e 444B     		ldr	r3, .L26+16
+ 513 0050 1B88     		ldrh	r3, [r3]
+ 514 0052 B3F5806F 		cmp	r3, #1024
+ 515 0056 EBD3     		bcc	.L19
+ 125:.\main.c      **** 		}
+ 126:.\main.c      **** 		V_Sample_AVG=V_Sample_SUM_1 >> (N_Sample);
+ 516              		.loc 1 126 0 is_stmt 1
+ 517 0058 3D4B     		ldr	r3, .L26
+ 518 005a 1B68     		ldr	r3, [r3]
+ 519 005c 9B12     		asrs	r3, r3, #10
+ 520 005e 9AB2     		uxth	r2, r3
+ 521 0060 414B     		ldr	r3, .L26+24
+ 522 0062 1A80     		strh	r2, [r3]	@ movhi
+ 127:.\main.c      **** 		if(V_Sample_SUM_2>((float)V_Sample_AVG)*((float)V_Sample_AVG))
+ 523              		.loc 1 127 0
+ 524 0064 404B     		ldr	r3, .L26+24
+ 525 0066 1B88     		ldrh	r3, [r3]
+ 526 0068 1BB2     		sxth	r3, r3
+ 527 006a 1846     		mov	r0, r3
+ 528 006c FFF7FEFF 		bl	__aeabi_i2f
+ 529 0070 0446     		mov	r4, r0
+ 530 0072 3D4B     		ldr	r3, .L26+24
+ 531 0074 1B88     		ldrh	r3, [r3]
+ 532 0076 1BB2     		sxth	r3, r3
+ 533 0078 1846     		mov	r0, r3
+ 534 007a FFF7FEFF 		bl	__aeabi_i2f
+ 535 007e 0346     		mov	r3, r0
+ 536 0080 2046     		mov	r0, r4
+ 537 0082 1946     		mov	r1, r3
+ 538 0084 FFF7FEFF 		bl	__aeabi_fmul
+ 539 0088 0346     		mov	r3, r0
+ 540 008a 1A46     		mov	r2, r3
+ 541 008c 314B     		ldr	r3, .L26+4
+ 542 008e 1B68     		ldr	r3, [r3]	@ float
+ 543 0090 1046     		mov	r0, r2
+ 544 0092 1946     		mov	r1, r3
+ 545 0094 FFF7FEFF 		bl	__aeabi_fcmplt
+ 546 0098 0346     		mov	r3, r0
+ 547 009a 002B     		cmp	r3, #0
+ 548 009c 24D0     		beq	.L25
+ 128:.\main.c      **** 		{
+ 129:.\main.c      **** 			V_Sample_VAR=(V_Sample_SUM_2/( 1 << N_Sample))-((float)V_Sample_AVG)*((float)V_Sample_AVG);
+ 549              		.loc 1 129 0
+ 550 009e 2D4B     		ldr	r3, .L26+4
+ 551 00a0 1B68     		ldr	r3, [r3]	@ float
+ 552 00a2 1846     		mov	r0, r3
+ 553 00a4 4FF08941 		mov	r1, #1149239296
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 13
+
+
+ 554 00a8 FFF7FEFF 		bl	__aeabi_fdiv
+ 555 00ac 0346     		mov	r3, r0
+ 556 00ae 1C46     		mov	r4, r3
+ 557 00b0 2D4B     		ldr	r3, .L26+24
+ 558 00b2 1B88     		ldrh	r3, [r3]
+ 559 00b4 1BB2     		sxth	r3, r3
+ 560 00b6 1846     		mov	r0, r3
+ 561 00b8 FFF7FEFF 		bl	__aeabi_i2f
+ 562 00bc 0546     		mov	r5, r0
+ 563 00be 2A4B     		ldr	r3, .L26+24
+ 564 00c0 1B88     		ldrh	r3, [r3]
+ 565 00c2 1BB2     		sxth	r3, r3
+ 566 00c4 1846     		mov	r0, r3
+ 567 00c6 FFF7FEFF 		bl	__aeabi_i2f
+ 568 00ca 0346     		mov	r3, r0
+ 569 00cc 2846     		mov	r0, r5
+ 570 00ce 1946     		mov	r1, r3
+ 571 00d0 FFF7FEFF 		bl	__aeabi_fmul
+ 572 00d4 0346     		mov	r3, r0
+ 573 00d6 2046     		mov	r0, r4
+ 574 00d8 1946     		mov	r1, r3
+ 575 00da FFF7FEFF 		bl	__aeabi_fsub
+ 576 00de 0346     		mov	r3, r0
+ 577 00e0 1A46     		mov	r2, r3
+ 578 00e2 224B     		ldr	r3, .L26+28
+ 579 00e4 1A60     		str	r2, [r3]	@ float
+ 580 00e6 03E0     		b	.L22
+ 581              	.L25:
+ 130:.\main.c      **** 		}
+ 131:.\main.c      **** 		else
+ 132:.\main.c      **** 		{
+ 133:.\main.c      **** 			V_Sample_VAR=0;
+ 582              		.loc 1 133 0
+ 583 00e8 204B     		ldr	r3, .L26+28
+ 584 00ea 4FF00002 		mov	r2, #0
+ 585 00ee 1A60     		str	r2, [r3]	@ float
+ 586              	.L22:
+ 134:.\main.c      **** 		}
+ 135:.\main.c      **** 		V_Sample_AVG_float=ADC_DelSig_1_CountsTo_Volts(V_Sample_AVG);
+ 587              		.loc 1 135 0
+ 588 00f0 1D4B     		ldr	r3, .L26+24
+ 589 00f2 1B88     		ldrh	r3, [r3]
+ 590 00f4 1BB2     		sxth	r3, r3
+ 591 00f6 1846     		mov	r0, r3
+ 592 00f8 FFF7FEFF 		bl	ADC_DelSig_1_CountsTo_Volts
+ 593 00fc 0246     		mov	r2, r0
+ 594 00fe 1C4B     		ldr	r3, .L26+32
+ 595 0100 1A60     		str	r2, [r3]	@ float
+ 136:.\main.c      **** 		V_Sample_PP_float=ADC_DelSig_1_CountsTo_Volts((((int32)V_Sample_MAX)-((int32)V_Sample_MIN)));
+ 596              		.loc 1 136 0
+ 597 0102 164B     		ldr	r3, .L26+12
+ 598 0104 1B88     		ldrh	r3, [r3]
+ 599 0106 1AB2     		sxth	r2, r3
+ 600 0108 134B     		ldr	r3, .L26+8
+ 601 010a 1B88     		ldrh	r3, [r3]
+ 602 010c 1BB2     		sxth	r3, r3
+ 603 010e D31A     		subs	r3, r2, r3
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 14
+
+
+ 604 0110 1846     		mov	r0, r3
+ 605 0112 FFF7FEFF 		bl	ADC_DelSig_1_CountsTo_Volts
+ 606 0116 0246     		mov	r2, r0
+ 607 0118 164B     		ldr	r3, .L26+36
+ 608 011a 1A60     		str	r2, [r3]	@ float
+ 137:.\main.c      **** 		V_Sample_RMS_float=ADC_DelSig_1_CountsTo_Volts((int32)sqrt(V_Sample_VAR));       
+ 609              		.loc 1 137 0
+ 610 011c 134B     		ldr	r3, .L26+28
+ 611 011e 1B68     		ldr	r3, [r3]	@ float
+ 612 0120 1846     		mov	r0, r3
+ 613 0122 FFF7FEFF 		bl	__aeabi_f2d
+ 614 0126 0246     		mov	r2, r0
+ 615 0128 0B46     		mov	r3, r1
+ 616 012a 1046     		mov	r0, r2
+ 617 012c 1946     		mov	r1, r3
+ 618 012e FFF7FEFF 		bl	sqrt
+ 619 0132 0246     		mov	r2, r0
+ 620 0134 0B46     		mov	r3, r1
+ 621 0136 1046     		mov	r0, r2
+ 622 0138 1946     		mov	r1, r3
+ 623 013a FFF7FEFF 		bl	__aeabi_d2iz
+ 624 013e 0346     		mov	r3, r0
+ 625 0140 1846     		mov	r0, r3
+ 626 0142 FFF7FEFF 		bl	ADC_DelSig_1_CountsTo_Volts
+ 627 0146 0246     		mov	r2, r0
+ 628 0148 0B4B     		ldr	r3, .L26+40
+ 629 014a 1A60     		str	r2, [r3]	@ float
+ 138:.\main.c      ****     }
+ 630              		.loc 1 138 0
+ 631 014c 5DE7     		b	.L23
+ 632              	.L27:
+ 633 014e 00BF     		.align	2
+ 634              	.L26:
+ 635 0150 00000000 		.word	V_Sample_SUM_1
+ 636 0154 00000000 		.word	V_Sample_SUM_2
+ 637 0158 00000000 		.word	V_Sample_MIN
+ 638 015c 00000000 		.word	V_Sample_MAX
+ 639 0160 00000000 		.word	i
+ 640 0164 7B640040 		.word	1073767547
+ 641 0168 00000000 		.word	V_Sample_AVG
+ 642 016c 00000000 		.word	V_Sample_VAR
+ 643 0170 00000000 		.word	V_Sample_AVG_float
+ 644 0174 00000000 		.word	V_Sample_PP_float
+ 645 0178 00000000 		.word	V_Sample_RMS_float
+ 646              		.cfi_endproc
+ 647              	.LFE68:
+ 648              		.size	main, .-main
+ 649              		.text
+ 650              	.Letext0:
+ 651              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 652              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 653              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 654              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 655              		.section	.debug_info,"",%progbits
+ 656              	.Ldebug_info0:
+ 657 0000 90020000 		.4byte	0x290
+ 658 0004 0400     		.2byte	0x4
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 15
+
+
+ 659 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 660 000a 04       		.byte	0x4
+ 661 000b 01       		.uleb128 0x1
+ 662 000c 51000000 		.4byte	.LASF43
+ 663 0010 01       		.byte	0x1
+ 664 0011 F1000000 		.4byte	.LASF44
+ 665 0015 70020000 		.4byte	.LASF45
+ 666 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 667 001d 00000000 		.4byte	0
+ 668 0021 00000000 		.4byte	.Ldebug_line0
+ 669 0025 02       		.uleb128 0x2
+ 670 0026 01       		.byte	0x1
+ 671 0027 06       		.byte	0x6
+ 672 0028 51020000 		.4byte	.LASF0
+ 673 002c 02       		.uleb128 0x2
+ 674 002d 01       		.byte	0x1
+ 675 002e 08       		.byte	0x8
+ 676 002f 1C010000 		.4byte	.LASF1
+ 677 0033 02       		.uleb128 0x2
+ 678 0034 02       		.byte	0x2
+ 679 0035 05       		.byte	0x5
+ 680 0036 19020000 		.4byte	.LASF2
+ 681 003a 02       		.uleb128 0x2
+ 682 003b 02       		.byte	0x2
+ 683 003c 07       		.byte	0x7
+ 684 003d 5D020000 		.4byte	.LASF3
+ 685 0041 03       		.uleb128 0x3
+ 686 0042 47000000 		.4byte	.LASF9
+ 687 0046 02       		.byte	0x2
+ 688 0047 3F       		.byte	0x3f
+ 689 0048 4C000000 		.4byte	0x4c
+ 690 004c 02       		.uleb128 0x2
+ 691 004d 04       		.byte	0x4
+ 692 004e 05       		.byte	0x5
+ 693 004f 29020000 		.4byte	.LASF4
+ 694 0053 02       		.uleb128 0x2
+ 695 0054 04       		.byte	0x4
+ 696 0055 07       		.byte	0x7
+ 697 0056 35010000 		.4byte	.LASF5
+ 698 005a 02       		.uleb128 0x2
+ 699 005b 08       		.byte	0x8
+ 700 005c 05       		.byte	0x5
+ 701 005d 00000000 		.4byte	.LASF6
+ 702 0061 02       		.uleb128 0x2
+ 703 0062 08       		.byte	0x8
+ 704 0063 07       		.byte	0x7
+ 705 0064 AC010000 		.4byte	.LASF7
+ 706 0068 04       		.uleb128 0x4
+ 707 0069 04       		.byte	0x4
+ 708 006a 05       		.byte	0x5
+ 709 006b 696E7400 		.ascii	"int\000"
+ 710 006f 02       		.uleb128 0x2
+ 711 0070 04       		.byte	0x4
+ 712 0071 07       		.byte	0x7
+ 713 0072 9F010000 		.4byte	.LASF8
+ 714 0076 03       		.uleb128 0x3
+ 715 0077 E1010000 		.4byte	.LASF10
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 16
+
+
+ 716 007b 03       		.byte	0x3
+ 717 007c 2C       		.byte	0x2c
+ 718 007d 41000000 		.4byte	0x41
+ 719 0081 05       		.uleb128 0x5
+ 720 0082 23020000 		.4byte	.LASF11
+ 721 0086 04       		.byte	0x4
+ 722 0087 3801     		.2byte	0x138
+ 723 0089 2C000000 		.4byte	0x2c
+ 724 008d 05       		.uleb128 0x5
+ 725 008e 7F010000 		.4byte	.LASF12
+ 726 0092 04       		.byte	0x4
+ 727 0093 3901     		.2byte	0x139
+ 728 0095 3A000000 		.4byte	0x3a
+ 729 0099 05       		.uleb128 0x5
+ 730 009a 8B010000 		.4byte	.LASF13
+ 731 009e 04       		.byte	0x4
+ 732 009f 3A01     		.2byte	0x13a
+ 733 00a1 53000000 		.4byte	0x53
+ 734 00a5 05       		.uleb128 0x5
+ 735 00a6 86010000 		.4byte	.LASF14
+ 736 00aa 04       		.byte	0x4
+ 737 00ab 3B01     		.2byte	0x13b
+ 738 00ad 25000000 		.4byte	0x25
+ 739 00b1 05       		.uleb128 0x5
+ 740 00b2 2F010000 		.4byte	.LASF15
+ 741 00b6 04       		.byte	0x4
+ 742 00b7 3C01     		.2byte	0x13c
+ 743 00b9 33000000 		.4byte	0x33
+ 744 00bd 05       		.uleb128 0x5
+ 745 00be 47010000 		.4byte	.LASF16
+ 746 00c2 04       		.byte	0x4
+ 747 00c3 3D01     		.2byte	0x13d
+ 748 00c5 4C000000 		.4byte	0x4c
+ 749 00c9 02       		.uleb128 0x2
+ 750 00ca 04       		.byte	0x4
+ 751 00cb 04       		.byte	0x4
+ 752 00cc 0D010000 		.4byte	.LASF17
+ 753 00d0 02       		.uleb128 0x2
+ 754 00d1 08       		.byte	0x8
+ 755 00d2 04       		.byte	0x4
+ 756 00d3 68010000 		.4byte	.LASF18
+ 757 00d7 02       		.uleb128 0x2
+ 758 00d8 01       		.byte	0x1
+ 759 00d9 08       		.byte	0x8
+ 760 00da 0C020000 		.4byte	.LASF19
+ 761 00de 05       		.uleb128 0x5
+ 762 00df 2A010000 		.4byte	.LASF20
+ 763 00e3 04       		.byte	0x4
+ 764 00e4 E201     		.2byte	0x1e2
+ 765 00e6 EA000000 		.4byte	0xea
+ 766 00ea 06       		.uleb128 0x6
+ 767 00eb 81000000 		.4byte	0x81
+ 768 00ef 02       		.uleb128 0x2
+ 769 00f0 04       		.byte	0x4
+ 770 00f1 07       		.byte	0x7
+ 771 00f2 E9010000 		.4byte	.LASF21
+ 772 00f6 02       		.uleb128 0x2
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 17
+
+
+ 773 00f7 08       		.byte	0x8
+ 774 00f8 04       		.byte	0x4
+ 775 00f9 45020000 		.4byte	.LASF22
+ 776 00fd 07       		.uleb128 0x7
+ 777 00fe F2010000 		.4byte	.LASF25
+ 778 0102 01       		.byte	0x1
+ 779 0103 1E       		.byte	0x1e
+ 780 0104 00000000 		.4byte	.LFB63
+ 781 0108 5C000000 		.4byte	.LFE63-.LFB63
+ 782 010c 01       		.uleb128 0x1
+ 783 010d 9C       		.byte	0x9c
+ 784 010e 2F010000 		.4byte	0x12f
+ 785 0112 08       		.uleb128 0x8
+ 786 0113 1B000000 		.4byte	.LASF23
+ 787 0117 01       		.byte	0x1
+ 788 0118 22       		.byte	0x22
+ 789 0119 81000000 		.4byte	0x81
+ 790 011d 02       		.uleb128 0x2
+ 791 011e 91       		.byte	0x91
+ 792 011f 77       		.sleb128 -9
+ 793 0120 08       		.uleb128 0x8
+ 794 0121 52010000 		.4byte	.LASF24
+ 795 0125 01       		.byte	0x1
+ 796 0126 23       		.byte	0x23
+ 797 0127 2F010000 		.4byte	0x12f
+ 798 012b 02       		.uleb128 0x2
+ 799 012c 91       		.byte	0x91
+ 800 012d 74       		.sleb128 -12
+ 801 012e 00       		.byte	0
+ 802 012f 09       		.uleb128 0x9
+ 803 0130 81000000 		.4byte	0x81
+ 804 0134 3F010000 		.4byte	0x13f
+ 805 0138 0A       		.uleb128 0xa
+ 806 0139 EF000000 		.4byte	0xef
+ 807 013d 00       		.byte	0
+ 808 013e 00       		.byte	0
+ 809 013f 07       		.uleb128 0x7
+ 810 0140 92010000 		.4byte	.LASF26
+ 811 0144 01       		.byte	0x1
+ 812 0145 33       		.byte	0x33
+ 813 0146 00000000 		.4byte	.LFB64
+ 814 014a 64000000 		.4byte	.LFE64-.LFB64
+ 815 014e 01       		.uleb128 0x1
+ 816 014f 9C       		.byte	0x9c
+ 817 0150 71010000 		.4byte	0x171
+ 818 0154 08       		.uleb128 0x8
+ 819 0155 6F010000 		.4byte	.LASF27
+ 820 0159 01       		.byte	0x1
+ 821 015a 37       		.byte	0x37
+ 822 015b 81000000 		.4byte	0x81
+ 823 015f 02       		.uleb128 0x2
+ 824 0160 91       		.byte	0x91
+ 825 0161 77       		.sleb128 -9
+ 826 0162 08       		.uleb128 0x8
+ 827 0163 3E000000 		.4byte	.LASF28
+ 828 0167 01       		.byte	0x1
+ 829 0168 38       		.byte	0x38
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 18
+
+
+ 830 0169 2F010000 		.4byte	0x12f
+ 831 016d 02       		.uleb128 0x2
+ 832 016e 91       		.byte	0x91
+ 833 016f 74       		.sleb128 -12
+ 834 0170 00       		.byte	0
+ 835 0171 0B       		.uleb128 0xb
+ 836 0172 11020000 		.4byte	.LASF29
+ 837 0176 01       		.byte	0x1
+ 838 0177 49       		.byte	0x49
+ 839 0178 00000000 		.4byte	.LFB65
+ 840 017c 30000000 		.4byte	.LFE65-.LFB65
+ 841 0180 01       		.uleb128 0x1
+ 842 0181 9C       		.byte	0x9c
+ 843 0182 0B       		.uleb128 0xb
+ 844 0183 26000000 		.4byte	.LASF30
+ 845 0187 01       		.byte	0x1
+ 846 0188 50       		.byte	0x50
+ 847 0189 00000000 		.4byte	.LFB66
+ 848 018d AC000000 		.4byte	.LFE66-.LFB66
+ 849 0191 01       		.uleb128 0x1
+ 850 0192 9C       		.byte	0x9c
+ 851 0193 0C       		.uleb128 0xc
+ 852 0194 4D010000 		.4byte	.LASF46
+ 853 0198 01       		.byte	0x1
+ 854 0199 5B       		.byte	0x5b
+ 855 019a 00000000 		.4byte	.LFB67
+ 856 019e 4C000000 		.4byte	.LFE67-.LFB67
+ 857 01a2 01       		.uleb128 0x1
+ 858 01a3 9C       		.byte	0x9c
+ 859 01a4 0D       		.uleb128 0xd
+ 860 01a5 7A010000 		.4byte	.LASF31
+ 861 01a9 01       		.byte	0x1
+ 862 01aa 6A       		.byte	0x6a
+ 863 01ab 68000000 		.4byte	0x68
+ 864 01af 00000000 		.4byte	.LFB68
+ 865 01b3 7C010000 		.4byte	.LFE68-.LFB68
+ 866 01b7 01       		.uleb128 0x1
+ 867 01b8 9C       		.byte	0x9c
+ 868 01b9 0E       		.uleb128 0xe
+ 869 01ba 5B010000 		.4byte	.LASF32
+ 870 01be 05       		.byte	0x5
+ 871 01bf 5506     		.2byte	0x655
+ 872 01c1 C5010000 		.4byte	0x1c5
+ 873 01c5 06       		.uleb128 0x6
+ 874 01c6 76000000 		.4byte	0x76
+ 875 01ca 09       		.uleb128 0x9
+ 876 01cb B1000000 		.4byte	0xb1
+ 877 01cf DA010000 		.4byte	0x1da
+ 878 01d3 0A       		.uleb128 0xa
+ 879 01d4 EF000000 		.4byte	0xef
+ 880 01d8 00       		.byte	0
+ 881 01d9 00       		.byte	0
+ 882 01da 0F       		.uleb128 0xf
+ 883 01db 13010000 		.4byte	.LASF33
+ 884 01df 01       		.byte	0x1
+ 885 01e0 12       		.byte	0x12
+ 886 01e1 CA010000 		.4byte	0x1ca
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 19
+
+
+ 887 01e5 05       		.uleb128 0x5
+ 888 01e6 03       		.byte	0x3
+ 889 01e7 00000000 		.4byte	V_Sample
+ 890 01eb 0F       		.uleb128 0xf
+ 891 01ec C3010000 		.4byte	.LASF34
+ 892 01f0 01       		.byte	0x1
+ 893 01f1 13       		.byte	0x13
+ 894 01f2 BD000000 		.4byte	0xbd
+ 895 01f6 05       		.uleb128 0x5
+ 896 01f7 03       		.byte	0x3
+ 897 01f8 00000000 		.4byte	V_Sample_SUM_1
+ 898 01fc 0F       		.uleb128 0xf
+ 899 01fd D2010000 		.4byte	.LASF35
+ 900 0201 01       		.byte	0x1
+ 901 0202 14       		.byte	0x14
+ 902 0203 C9000000 		.4byte	0xc9
+ 903 0207 05       		.uleb128 0x5
+ 904 0208 03       		.byte	0x3
+ 905 0209 00000000 		.4byte	V_Sample_SUM_2
+ 906 020d 0F       		.uleb128 0xf
+ 907 020e 31000000 		.4byte	.LASF36
+ 908 0212 01       		.byte	0x1
+ 909 0213 15       		.byte	0x15
+ 910 0214 B1000000 		.4byte	0xb1
+ 911 0218 05       		.uleb128 0x5
+ 912 0219 03       		.byte	0x3
+ 913 021a 00000000 		.4byte	V_Sample_MIN
+ 914 021e 0F       		.uleb128 0xf
+ 915 021f F6020000 		.4byte	.LASF37
+ 916 0223 01       		.byte	0x1
+ 917 0224 16       		.byte	0x16
+ 918 0225 B1000000 		.4byte	0xb1
+ 919 0229 05       		.uleb128 0x5
+ 920 022a 03       		.byte	0x3
+ 921 022b 00000000 		.4byte	V_Sample_MAX
+ 922 022f 0F       		.uleb128 0xf
+ 923 0230 FF010000 		.4byte	.LASF38
+ 924 0234 01       		.byte	0x1
+ 925 0235 17       		.byte	0x17
+ 926 0236 B1000000 		.4byte	0xb1
+ 927 023a 05       		.uleb128 0x5
+ 928 023b 03       		.byte	0x3
+ 929 023c 00000000 		.4byte	V_Sample_AVG
+ 930 0240 0F       		.uleb128 0xf
+ 931 0241 0E000000 		.4byte	.LASF39
+ 932 0245 01       		.byte	0x1
+ 933 0246 18       		.byte	0x18
+ 934 0247 C9000000 		.4byte	0xc9
+ 935 024b 05       		.uleb128 0x5
+ 936 024c 03       		.byte	0x3
+ 937 024d 00000000 		.4byte	V_Sample_VAR
+ 938 0251 0F       		.uleb128 0xf
+ 939 0252 32020000 		.4byte	.LASF40
+ 940 0256 01       		.byte	0x1
+ 941 0257 19       		.byte	0x19
+ 942 0258 C9000000 		.4byte	0xc9
+ 943 025c 05       		.uleb128 0x5
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 20
+
+
+ 944 025d 03       		.byte	0x3
+ 945 025e 00000000 		.4byte	V_Sample_AVG_float
+ 946 0262 0F       		.uleb128 0xf
+ 947 0263 DF000000 		.4byte	.LASF41
+ 948 0267 01       		.byte	0x1
+ 949 0268 1A       		.byte	0x1a
+ 950 0269 C9000000 		.4byte	0xc9
+ 951 026d 05       		.uleb128 0x5
+ 952 026e 03       		.byte	0x3
+ 953 026f 00000000 		.4byte	V_Sample_PP_float
+ 954 0273 0F       		.uleb128 0xf
+ 955 0274 FA000000 		.4byte	.LASF42
+ 956 0278 01       		.byte	0x1
+ 957 0279 1B       		.byte	0x1b
+ 958 027a C9000000 		.4byte	0xc9
+ 959 027e 05       		.uleb128 0x5
+ 960 027f 03       		.byte	0x3
+ 961 0280 00000000 		.4byte	V_Sample_RMS_float
+ 962 0284 10       		.uleb128 0x10
+ 963 0285 6900     		.ascii	"i\000"
+ 964 0287 01       		.byte	0x1
+ 965 0288 1C       		.byte	0x1c
+ 966 0289 8D000000 		.4byte	0x8d
+ 967 028d 05       		.uleb128 0x5
+ 968 028e 03       		.byte	0x3
+ 969 028f 00000000 		.4byte	i
+ 970 0293 00       		.byte	0
+ 971              		.section	.debug_abbrev,"",%progbits
+ 972              	.Ldebug_abbrev0:
+ 973 0000 01       		.uleb128 0x1
+ 974 0001 11       		.uleb128 0x11
+ 975 0002 01       		.byte	0x1
+ 976 0003 25       		.uleb128 0x25
+ 977 0004 0E       		.uleb128 0xe
+ 978 0005 13       		.uleb128 0x13
+ 979 0006 0B       		.uleb128 0xb
+ 980 0007 03       		.uleb128 0x3
+ 981 0008 0E       		.uleb128 0xe
+ 982 0009 1B       		.uleb128 0x1b
+ 983 000a 0E       		.uleb128 0xe
+ 984 000b 55       		.uleb128 0x55
+ 985 000c 17       		.uleb128 0x17
+ 986 000d 11       		.uleb128 0x11
+ 987 000e 01       		.uleb128 0x1
+ 988 000f 10       		.uleb128 0x10
+ 989 0010 17       		.uleb128 0x17
+ 990 0011 00       		.byte	0
+ 991 0012 00       		.byte	0
+ 992 0013 02       		.uleb128 0x2
+ 993 0014 24       		.uleb128 0x24
+ 994 0015 00       		.byte	0
+ 995 0016 0B       		.uleb128 0xb
+ 996 0017 0B       		.uleb128 0xb
+ 997 0018 3E       		.uleb128 0x3e
+ 998 0019 0B       		.uleb128 0xb
+ 999 001a 03       		.uleb128 0x3
+ 1000 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 21
+
+
+ 1001 001c 00       		.byte	0
+ 1002 001d 00       		.byte	0
+ 1003 001e 03       		.uleb128 0x3
+ 1004 001f 16       		.uleb128 0x16
+ 1005 0020 00       		.byte	0
+ 1006 0021 03       		.uleb128 0x3
+ 1007 0022 0E       		.uleb128 0xe
+ 1008 0023 3A       		.uleb128 0x3a
+ 1009 0024 0B       		.uleb128 0xb
+ 1010 0025 3B       		.uleb128 0x3b
+ 1011 0026 0B       		.uleb128 0xb
+ 1012 0027 49       		.uleb128 0x49
+ 1013 0028 13       		.uleb128 0x13
+ 1014 0029 00       		.byte	0
+ 1015 002a 00       		.byte	0
+ 1016 002b 04       		.uleb128 0x4
+ 1017 002c 24       		.uleb128 0x24
+ 1018 002d 00       		.byte	0
+ 1019 002e 0B       		.uleb128 0xb
+ 1020 002f 0B       		.uleb128 0xb
+ 1021 0030 3E       		.uleb128 0x3e
+ 1022 0031 0B       		.uleb128 0xb
+ 1023 0032 03       		.uleb128 0x3
+ 1024 0033 08       		.uleb128 0x8
+ 1025 0034 00       		.byte	0
+ 1026 0035 00       		.byte	0
+ 1027 0036 05       		.uleb128 0x5
+ 1028 0037 16       		.uleb128 0x16
+ 1029 0038 00       		.byte	0
+ 1030 0039 03       		.uleb128 0x3
+ 1031 003a 0E       		.uleb128 0xe
+ 1032 003b 3A       		.uleb128 0x3a
+ 1033 003c 0B       		.uleb128 0xb
+ 1034 003d 3B       		.uleb128 0x3b
+ 1035 003e 05       		.uleb128 0x5
+ 1036 003f 49       		.uleb128 0x49
+ 1037 0040 13       		.uleb128 0x13
+ 1038 0041 00       		.byte	0
+ 1039 0042 00       		.byte	0
+ 1040 0043 06       		.uleb128 0x6
+ 1041 0044 35       		.uleb128 0x35
+ 1042 0045 00       		.byte	0
+ 1043 0046 49       		.uleb128 0x49
+ 1044 0047 13       		.uleb128 0x13
+ 1045 0048 00       		.byte	0
+ 1046 0049 00       		.byte	0
+ 1047 004a 07       		.uleb128 0x7
+ 1048 004b 2E       		.uleb128 0x2e
+ 1049 004c 01       		.byte	0x1
+ 1050 004d 3F       		.uleb128 0x3f
+ 1051 004e 19       		.uleb128 0x19
+ 1052 004f 03       		.uleb128 0x3
+ 1053 0050 0E       		.uleb128 0xe
+ 1054 0051 3A       		.uleb128 0x3a
+ 1055 0052 0B       		.uleb128 0xb
+ 1056 0053 3B       		.uleb128 0x3b
+ 1057 0054 0B       		.uleb128 0xb
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 22
+
+
+ 1058 0055 11       		.uleb128 0x11
+ 1059 0056 01       		.uleb128 0x1
+ 1060 0057 12       		.uleb128 0x12
+ 1061 0058 06       		.uleb128 0x6
+ 1062 0059 40       		.uleb128 0x40
+ 1063 005a 18       		.uleb128 0x18
+ 1064 005b 9642     		.uleb128 0x2116
+ 1065 005d 19       		.uleb128 0x19
+ 1066 005e 01       		.uleb128 0x1
+ 1067 005f 13       		.uleb128 0x13
+ 1068 0060 00       		.byte	0
+ 1069 0061 00       		.byte	0
+ 1070 0062 08       		.uleb128 0x8
+ 1071 0063 34       		.uleb128 0x34
+ 1072 0064 00       		.byte	0
+ 1073 0065 03       		.uleb128 0x3
+ 1074 0066 0E       		.uleb128 0xe
+ 1075 0067 3A       		.uleb128 0x3a
+ 1076 0068 0B       		.uleb128 0xb
+ 1077 0069 3B       		.uleb128 0x3b
+ 1078 006a 0B       		.uleb128 0xb
+ 1079 006b 49       		.uleb128 0x49
+ 1080 006c 13       		.uleb128 0x13
+ 1081 006d 02       		.uleb128 0x2
+ 1082 006e 18       		.uleb128 0x18
+ 1083 006f 00       		.byte	0
+ 1084 0070 00       		.byte	0
+ 1085 0071 09       		.uleb128 0x9
+ 1086 0072 01       		.uleb128 0x1
+ 1087 0073 01       		.byte	0x1
+ 1088 0074 49       		.uleb128 0x49
+ 1089 0075 13       		.uleb128 0x13
+ 1090 0076 01       		.uleb128 0x1
+ 1091 0077 13       		.uleb128 0x13
+ 1092 0078 00       		.byte	0
+ 1093 0079 00       		.byte	0
+ 1094 007a 0A       		.uleb128 0xa
+ 1095 007b 21       		.uleb128 0x21
+ 1096 007c 00       		.byte	0
+ 1097 007d 49       		.uleb128 0x49
+ 1098 007e 13       		.uleb128 0x13
+ 1099 007f 2F       		.uleb128 0x2f
+ 1100 0080 0B       		.uleb128 0xb
+ 1101 0081 00       		.byte	0
+ 1102 0082 00       		.byte	0
+ 1103 0083 0B       		.uleb128 0xb
+ 1104 0084 2E       		.uleb128 0x2e
+ 1105 0085 00       		.byte	0
+ 1106 0086 3F       		.uleb128 0x3f
+ 1107 0087 19       		.uleb128 0x19
+ 1108 0088 03       		.uleb128 0x3
+ 1109 0089 0E       		.uleb128 0xe
+ 1110 008a 3A       		.uleb128 0x3a
+ 1111 008b 0B       		.uleb128 0xb
+ 1112 008c 3B       		.uleb128 0x3b
+ 1113 008d 0B       		.uleb128 0xb
+ 1114 008e 27       		.uleb128 0x27
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 23
+
+
+ 1115 008f 19       		.uleb128 0x19
+ 1116 0090 11       		.uleb128 0x11
+ 1117 0091 01       		.uleb128 0x1
+ 1118 0092 12       		.uleb128 0x12
+ 1119 0093 06       		.uleb128 0x6
+ 1120 0094 40       		.uleb128 0x40
+ 1121 0095 18       		.uleb128 0x18
+ 1122 0096 9642     		.uleb128 0x2116
+ 1123 0098 19       		.uleb128 0x19
+ 1124 0099 00       		.byte	0
+ 1125 009a 00       		.byte	0
+ 1126 009b 0C       		.uleb128 0xc
+ 1127 009c 2E       		.uleb128 0x2e
+ 1128 009d 00       		.byte	0
+ 1129 009e 3F       		.uleb128 0x3f
+ 1130 009f 19       		.uleb128 0x19
+ 1131 00a0 03       		.uleb128 0x3
+ 1132 00a1 0E       		.uleb128 0xe
+ 1133 00a2 3A       		.uleb128 0x3a
+ 1134 00a3 0B       		.uleb128 0xb
+ 1135 00a4 3B       		.uleb128 0x3b
+ 1136 00a5 0B       		.uleb128 0xb
+ 1137 00a6 11       		.uleb128 0x11
+ 1138 00a7 01       		.uleb128 0x1
+ 1139 00a8 12       		.uleb128 0x12
+ 1140 00a9 06       		.uleb128 0x6
+ 1141 00aa 40       		.uleb128 0x40
+ 1142 00ab 18       		.uleb128 0x18
+ 1143 00ac 9642     		.uleb128 0x2116
+ 1144 00ae 19       		.uleb128 0x19
+ 1145 00af 00       		.byte	0
+ 1146 00b0 00       		.byte	0
+ 1147 00b1 0D       		.uleb128 0xd
+ 1148 00b2 2E       		.uleb128 0x2e
+ 1149 00b3 00       		.byte	0
+ 1150 00b4 3F       		.uleb128 0x3f
+ 1151 00b5 19       		.uleb128 0x19
+ 1152 00b6 03       		.uleb128 0x3
+ 1153 00b7 0E       		.uleb128 0xe
+ 1154 00b8 3A       		.uleb128 0x3a
+ 1155 00b9 0B       		.uleb128 0xb
+ 1156 00ba 3B       		.uleb128 0x3b
+ 1157 00bb 0B       		.uleb128 0xb
+ 1158 00bc 49       		.uleb128 0x49
+ 1159 00bd 13       		.uleb128 0x13
+ 1160 00be 11       		.uleb128 0x11
+ 1161 00bf 01       		.uleb128 0x1
+ 1162 00c0 12       		.uleb128 0x12
+ 1163 00c1 06       		.uleb128 0x6
+ 1164 00c2 40       		.uleb128 0x40
+ 1165 00c3 18       		.uleb128 0x18
+ 1166 00c4 9642     		.uleb128 0x2116
+ 1167 00c6 19       		.uleb128 0x19
+ 1168 00c7 00       		.byte	0
+ 1169 00c8 00       		.byte	0
+ 1170 00c9 0E       		.uleb128 0xe
+ 1171 00ca 34       		.uleb128 0x34
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 24
+
+
+ 1172 00cb 00       		.byte	0
+ 1173 00cc 03       		.uleb128 0x3
+ 1174 00cd 0E       		.uleb128 0xe
+ 1175 00ce 3A       		.uleb128 0x3a
+ 1176 00cf 0B       		.uleb128 0xb
+ 1177 00d0 3B       		.uleb128 0x3b
+ 1178 00d1 05       		.uleb128 0x5
+ 1179 00d2 49       		.uleb128 0x49
+ 1180 00d3 13       		.uleb128 0x13
+ 1181 00d4 3F       		.uleb128 0x3f
+ 1182 00d5 19       		.uleb128 0x19
+ 1183 00d6 3C       		.uleb128 0x3c
+ 1184 00d7 19       		.uleb128 0x19
+ 1185 00d8 00       		.byte	0
+ 1186 00d9 00       		.byte	0
+ 1187 00da 0F       		.uleb128 0xf
+ 1188 00db 34       		.uleb128 0x34
+ 1189 00dc 00       		.byte	0
+ 1190 00dd 03       		.uleb128 0x3
+ 1191 00de 0E       		.uleb128 0xe
+ 1192 00df 3A       		.uleb128 0x3a
+ 1193 00e0 0B       		.uleb128 0xb
+ 1194 00e1 3B       		.uleb128 0x3b
+ 1195 00e2 0B       		.uleb128 0xb
+ 1196 00e3 49       		.uleb128 0x49
+ 1197 00e4 13       		.uleb128 0x13
+ 1198 00e5 3F       		.uleb128 0x3f
+ 1199 00e6 19       		.uleb128 0x19
+ 1200 00e7 02       		.uleb128 0x2
+ 1201 00e8 18       		.uleb128 0x18
+ 1202 00e9 00       		.byte	0
+ 1203 00ea 00       		.byte	0
+ 1204 00eb 10       		.uleb128 0x10
+ 1205 00ec 34       		.uleb128 0x34
+ 1206 00ed 00       		.byte	0
+ 1207 00ee 03       		.uleb128 0x3
+ 1208 00ef 08       		.uleb128 0x8
+ 1209 00f0 3A       		.uleb128 0x3a
+ 1210 00f1 0B       		.uleb128 0xb
+ 1211 00f2 3B       		.uleb128 0x3b
+ 1212 00f3 0B       		.uleb128 0xb
+ 1213 00f4 49       		.uleb128 0x49
+ 1214 00f5 13       		.uleb128 0x13
+ 1215 00f6 3F       		.uleb128 0x3f
+ 1216 00f7 19       		.uleb128 0x19
+ 1217 00f8 02       		.uleb128 0x2
+ 1218 00f9 18       		.uleb128 0x18
+ 1219 00fa 00       		.byte	0
+ 1220 00fb 00       		.byte	0
+ 1221 00fc 00       		.byte	0
+ 1222              		.section	.debug_aranges,"",%progbits
+ 1223 0000 44000000 		.4byte	0x44
+ 1224 0004 0200     		.2byte	0x2
+ 1225 0006 00000000 		.4byte	.Ldebug_info0
+ 1226 000a 04       		.byte	0x4
+ 1227 000b 00       		.byte	0
+ 1228 000c 0000     		.2byte	0
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 25
+
+
+ 1229 000e 0000     		.2byte	0
+ 1230 0010 00000000 		.4byte	.LFB63
+ 1231 0014 5C000000 		.4byte	.LFE63-.LFB63
+ 1232 0018 00000000 		.4byte	.LFB64
+ 1233 001c 64000000 		.4byte	.LFE64-.LFB64
+ 1234 0020 00000000 		.4byte	.LFB65
+ 1235 0024 30000000 		.4byte	.LFE65-.LFB65
+ 1236 0028 00000000 		.4byte	.LFB66
+ 1237 002c AC000000 		.4byte	.LFE66-.LFB66
+ 1238 0030 00000000 		.4byte	.LFB67
+ 1239 0034 4C000000 		.4byte	.LFE67-.LFB67
+ 1240 0038 00000000 		.4byte	.LFB68
+ 1241 003c 7C010000 		.4byte	.LFE68-.LFB68
+ 1242 0040 00000000 		.4byte	0
+ 1243 0044 00000000 		.4byte	0
+ 1244              		.section	.debug_ranges,"",%progbits
+ 1245              	.Ldebug_ranges0:
+ 1246 0000 00000000 		.4byte	.LFB63
+ 1247 0004 5C000000 		.4byte	.LFE63
+ 1248 0008 00000000 		.4byte	.LFB64
+ 1249 000c 64000000 		.4byte	.LFE64
+ 1250 0010 00000000 		.4byte	.LFB65
+ 1251 0014 30000000 		.4byte	.LFE65
+ 1252 0018 00000000 		.4byte	.LFB66
+ 1253 001c AC000000 		.4byte	.LFE66
+ 1254 0020 00000000 		.4byte	.LFB67
+ 1255 0024 4C000000 		.4byte	.LFE67
+ 1256 0028 00000000 		.4byte	.LFB68
+ 1257 002c 7C010000 		.4byte	.LFE68
+ 1258 0030 00000000 		.4byte	0
+ 1259 0034 00000000 		.4byte	0
+ 1260              		.section	.debug_line,"",%progbits
+ 1261              	.Ldebug_line0:
+ 1262 0000 0E020000 		.section	.debug_str,"MS",%progbits,1
+ 1262      02004901 
+ 1262      00000201 
+ 1262      FB0E0D00 
+ 1262      01010101 
+ 1263              	.LASF6:
+ 1264 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1264      206C6F6E 
+ 1264      6720696E 
+ 1264      7400
+ 1265              	.LASF39:
+ 1266 000e 565F5361 		.ascii	"V_Sample_VAR\000"
+ 1266      6D706C65 
+ 1266      5F564152 
+ 1266      00
+ 1267              	.LASF23:
+ 1268 001b 444D415F 		.ascii	"DMA_1_Chan\000"
+ 1268      315F4368 
+ 1268      616E00
+ 1269              	.LASF30:
+ 1270 0026 53616D70 		.ascii	"Sample_int\000"
+ 1270      6C655F69 
+ 1270      6E7400
+ 1271              	.LASF36:
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 26
+
+
+ 1272 0031 565F5361 		.ascii	"V_Sample_MIN\000"
+ 1272      6D706C65 
+ 1272      5F4D494E 
+ 1272      00
+ 1273              	.LASF28:
+ 1274 003e 444D415F 		.ascii	"DMA_2_TD\000"
+ 1274      325F5444 
+ 1274      00
+ 1275              	.LASF9:
+ 1276 0047 5F5F696E 		.ascii	"__int32_t\000"
+ 1276      7433325F 
+ 1276      7400
+ 1277              	.LASF43:
+ 1278 0051 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1278      4320342E 
+ 1278      392E3320 
+ 1278      32303135 
+ 1278      30333033 
+ 1279 0084 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1279      20726576 
+ 1279      6973696F 
+ 1279      6E203232 
+ 1279      31323230 
+ 1280 00b7 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1280      66756E63 
+ 1280      74696F6E 
+ 1280      2D736563 
+ 1280      74696F6E 
+ 1281              	.LASF41:
+ 1282 00df 565F5361 		.ascii	"V_Sample_PP_float\000"
+ 1282      6D706C65 
+ 1282      5F50505F 
+ 1282      666C6F61 
+ 1282      7400
+ 1283              	.LASF44:
+ 1284 00f1 2E5C6D61 		.ascii	".\\main.c\000"
+ 1284      696E2E63 
+ 1284      00
+ 1285              	.LASF42:
+ 1286 00fa 565F5361 		.ascii	"V_Sample_RMS_float\000"
+ 1286      6D706C65 
+ 1286      5F524D53 
+ 1286      5F666C6F 
+ 1286      617400
+ 1287              	.LASF17:
+ 1288 010d 666C6F61 		.ascii	"float\000"
+ 1288      7400
+ 1289              	.LASF33:
+ 1290 0113 565F5361 		.ascii	"V_Sample\000"
+ 1290      6D706C65 
+ 1290      00
+ 1291              	.LASF1:
+ 1292 011c 756E7369 		.ascii	"unsigned char\000"
+ 1292      676E6564 
+ 1292      20636861 
+ 1292      7200
+ 1293              	.LASF20:
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 27
+
+
+ 1294 012a 72656738 		.ascii	"reg8\000"
+ 1294      00
+ 1295              	.LASF15:
+ 1296 012f 696E7431 		.ascii	"int16\000"
+ 1296      3600
+ 1297              	.LASF5:
+ 1298 0135 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1298      20756E73 
+ 1298      69676E65 
+ 1298      6420696E 
+ 1298      7400
+ 1299              	.LASF16:
+ 1300 0147 696E7433 		.ascii	"int32\000"
+ 1300      3200
+ 1301              	.LASF46:
+ 1302 014d 496E6974 		.ascii	"Init\000"
+ 1302      00
+ 1303              	.LASF24:
+ 1304 0152 444D415F 		.ascii	"DMA_1_TD\000"
+ 1304      315F5444 
+ 1304      00
+ 1305              	.LASF32:
+ 1306 015b 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1306      52784275 
+ 1306      66666572 
+ 1306      00
+ 1307              	.LASF18:
+ 1308 0168 646F7562 		.ascii	"double\000"
+ 1308      6C6500
+ 1309              	.LASF27:
+ 1310 016f 444D415F 		.ascii	"DMA_2_Chan\000"
+ 1310      325F4368 
+ 1310      616E00
+ 1311              	.LASF31:
+ 1312 017a 6D61696E 		.ascii	"main\000"
+ 1312      00
+ 1313              	.LASF12:
+ 1314 017f 75696E74 		.ascii	"uint16\000"
+ 1314      313600
+ 1315              	.LASF14:
+ 1316 0186 696E7438 		.ascii	"int8\000"
+ 1316      00
+ 1317              	.LASF13:
+ 1318 018b 75696E74 		.ascii	"uint32\000"
+ 1318      333200
+ 1319              	.LASF26:
+ 1320 0192 444D415F 		.ascii	"DMA_2_Config\000"
+ 1320      325F436F 
+ 1320      6E666967 
+ 1320      00
+ 1321              	.LASF8:
+ 1322 019f 756E7369 		.ascii	"unsigned int\000"
+ 1322      676E6564 
+ 1322      20696E74 
+ 1322      00
+ 1323              	.LASF7:
+ 1324 01ac 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 28
+
+
+ 1324      206C6F6E 
+ 1324      6720756E 
+ 1324      7369676E 
+ 1324      65642069 
+ 1325              	.LASF34:
+ 1326 01c3 565F5361 		.ascii	"V_Sample_SUM_1\000"
+ 1326      6D706C65 
+ 1326      5F53554D 
+ 1326      5F3100
+ 1327              	.LASF35:
+ 1328 01d2 565F5361 		.ascii	"V_Sample_SUM_2\000"
+ 1328      6D706C65 
+ 1328      5F53554D 
+ 1328      5F3200
+ 1329              	.LASF10:
+ 1330 01e1 696E7433 		.ascii	"int32_t\000"
+ 1330      325F7400 
+ 1331              	.LASF21:
+ 1332 01e9 73697A65 		.ascii	"sizetype\000"
+ 1332      74797065 
+ 1332      00
+ 1333              	.LASF25:
+ 1334 01f2 444D415F 		.ascii	"DMA_1_Config\000"
+ 1334      315F436F 
+ 1334      6E666967 
+ 1334      00
+ 1335              	.LASF38:
+ 1336 01ff 565F5361 		.ascii	"V_Sample_AVG\000"
+ 1336      6D706C65 
+ 1336      5F415647 
+ 1336      00
+ 1337              	.LASF19:
+ 1338 020c 63686172 		.ascii	"char\000"
+ 1338      00
+ 1339              	.LASF29:
+ 1340 0211 4441435F 		.ascii	"DAC_int\000"
+ 1340      696E7400 
+ 1341              	.LASF2:
+ 1342 0219 73686F72 		.ascii	"short int\000"
+ 1342      7420696E 
+ 1342      7400
+ 1343              	.LASF11:
+ 1344 0223 75696E74 		.ascii	"uint8\000"
+ 1344      3800
+ 1345              	.LASF4:
+ 1346 0229 6C6F6E67 		.ascii	"long int\000"
+ 1346      20696E74 
+ 1346      00
+ 1347              	.LASF40:
+ 1348 0232 565F5361 		.ascii	"V_Sample_AVG_float\000"
+ 1348      6D706C65 
+ 1348      5F415647 
+ 1348      5F666C6F 
+ 1348      617400
+ 1349              	.LASF22:
+ 1350 0245 6C6F6E67 		.ascii	"long double\000"
+ 1350      20646F75 
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\ccAY4Is0.s 			page 29
+
+
+ 1350      626C6500 
+ 1351              	.LASF0:
+ 1352 0251 7369676E 		.ascii	"signed char\000"
+ 1352      65642063 
+ 1352      68617200 
+ 1353              	.LASF3:
+ 1354 025d 73686F72 		.ascii	"short unsigned int\000"
+ 1354      7420756E 
+ 1354      7369676E 
+ 1354      65642069 
+ 1354      6E7400
+ 1355              	.LASF45:
+ 1356 0270 433A5C55 		.ascii	"C:\\Users\\Jakob Wilbrandt\\Documents\\2 Ikke priva"
+ 1356      73657273 
+ 1356      5C4A616B 
+ 1356      6F622057 
+ 1356      696C6272 
+ 1357 029f 74655C41 		.ascii	"te\\AU\\AU oevelser\\MSE\\AmpOevelse\\MSEOevelse6\\"
+ 1357      555C4155 
+ 1357      206F6576 
+ 1357      656C7365 
+ 1357      725C4D53 
+ 1358 02cc 50534F43 		.ascii	"PSOC cretor\\EX 6 generel 20160818_1.cydsn\000"
+ 1358      20637265 
+ 1358      746F725C 
+ 1358      45582036 
+ 1358      2067656E 
+ 1359              	.LASF37:
+ 1360 02f6 565F5361 		.ascii	"V_Sample_MAX\000"
+ 1360      6D706C65 
+ 1360      5F4D4158 
+ 1360      00
+ 1361              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

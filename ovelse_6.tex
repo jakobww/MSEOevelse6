@@ -242,6 +242,10 @@ Vi kan nu se på hvilke støjbidrag der rent faktisk har noget at sige for vores
 
 Vi kan også konkludere at $R4_{taethed}$ er væsentligt lavere end $\epsilon_{foerU1B}$ og $\epsilon_{nU1B}$. Vi kan altså også se væk fra $R4_{taethed}$.
 
+I simuleringen sammenligner vi støjen før ADC'en med analysen. Nedenfor beregnes, ud fra spændingsstøjtætheden, Vrms-støjen før ADC.
+
+$V\tsub{rms} = e\tsub{tæthed} \cdot \sqrt{\SI{20}{\kilo\hertz}} = \SI{3.337}{\micro\volt}$
+
 
 \subsection{Støj fra ADC'en}
 
@@ -251,13 +255,30 @@ Vi ser nu på støjen fra ADC'en. Vi får oplyst at støjbidraget fra ADC'en er 
 
 \subsection{Samlet $V_{rms}$ støj}
 
-Den begrænsende båndbredde er, som nævnt ovenfor, $\SI{20}{\kilo\hertz}$. Vi bruger nu denne båndbredde til at beregne den samlede $V_{rms}$ støj. 
+Den begrænsende båndbredde, udgøres nu af det filter vi har efter ADC'en, som giver os en båndbredde på $\SI{100}{\hertz}$. Vi bruger nu denne båndbredde til at beregne den samlede $V_{rms}$ støj efter filteret. Denne værdi sammenlignes med den realiserede værdi nedenfor. 
 
-$V\tsub{rms} = e\tsub{adc} \cdot \sqrt{B} = \SI{85.39}{\micro\volt}$
+$V\tsub{rms} = e\tsub{adc} \cdot \sqrt{B} = \SI{6.3}{\micro\volt}$
 
 \section{Simulering}
 
+Nedenfor ses simuleringen. Vi aflæser en støj-værdi på $\SI{6.78}{\pico\volt}$. 
+Denne værdi stemmer ikke overens med analysen, men vi har, i analysen, heller ikke taget højde for strømstøjtætheder. Det gør multisim og dette kan være én af forklaringerne på hvorfor.
+
+\begin{figure}[ht] % (alternativt [H])
+	\centering
+	\includegraphics[width=0.8\textwidth]{figure/simulering}
+	\caption{Simulering af støj før ADC}
+	\label{simulering}
+\end{figure}
+
+
 \section{Realisering}
+
+Vi realiserer kredsløbet ved at tilslutte PSoC'en på udgangen af kredsløbet. Vi sampler udgangen med ADC'en og filtrere signalet gennem et filter med cutoff frekvens på 100 Hz.
+
+Ved interne beregninger i PSoC Creator finder vi en RMS værdi på 6.7 mV. Dette er væsentligt højere end vores beregninger. Vi må konkludere at resultatet ikke stemmer overens med den beregnede værdi, og vi undrer os over dette. Det er dog svært at sammenligne analyse-værdien med den realiserede værdi, da vores variable modstand kan antage forskellige værdier afhængig af lysmængden. Vi ved heller ikke om den lysvariable modstand er opbygget på en måde, der forårsager et større støjbidrag. I så fald ville vores antagelse om at se bort fra R3 ikke være valid.
+
+Derudover har vi slet ikke beregnet på Strømstøjtætheder, så det kan selvfølgelig være at det er strømstøjen der er definerende i dette kredsløb.
 
 \section{Konklusion}
 

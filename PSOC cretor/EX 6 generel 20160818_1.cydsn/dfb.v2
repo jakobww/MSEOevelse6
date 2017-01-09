@@ -1,0 +1,124 @@
+
+initialize:
+    acu(setmod,setmod) dmux(sa,sa) alu(set0) mac(clra)
+    acu(clear,clear) dmux(sa,sa) alu(hold) mac(hold) jmp(eob, WaitForNew)
+
+WaitForNew:
+    acu(hold,hold) dmux(sa,sa) alu(hold) mac(hold) jmpl(in1, PROGRAM)
+
+
+ChA_init:
+
+acu(setmod, setmod) dmux(sa, sa) alu(hold) mac(hold)
+acu(loadl, loadl) addr(ChA_MIN) dmux(sa, sa) alu(hold) mac(hold)
+acu(loadm, loadm) addr(ChA_MAX) dmux(sa, sa) alu(hold) mac(hold)
+acu(loadf, loadf) addr(ChA_FREG) dmux(sa, sa) alu(hold) mac(hold)
+acu(clear, clear) addr(1) dmux(ba, sa) alu(seta) mac(hold) jmp(eob, ChA_biquad)
+
+ChA_biquad:
+
+acu(write, write) addr(TEMP) dmux(sa, sa) alu(hold) mac(hold)
+acu(read, read) addr(ROUND) dmux(sra, sra) alu(hold) mac(clra)
+acu(read, read) addr(TEMP) dmux(sa, sra) alu(hold) mac(macc)
+acu(incr, incr) dmux(sra, sra) alu(seta) mac(macc)
+acu(hold, hold) dmux(sa, sa) alu(hold) mac(hold)write(da)
+acu(incr, incr) dmux(sra, sra) alu(hold) mac(macc)
+acu(hold, hold) dmux(sa, sa) alu(hold) mac(hold)write(da)
+acu(incr, incr) dmux(sra, sra) alu(hold) mac(macc)
+acu(incr, incr) dmux(sra, sra) alu(hold) mac(macc)
+acu(subf, incr) dmux(srm, srm) alu(add) mac(hold) jmpl(acubeq, ChA_finish)
+
+ChA_finish:
+
+acu(hold, hold) dmux(sa, sa) alu(hold) mac(hold) shift(L, 0)
+acu(incr, hold) addr(1) dmux(sra, sa) alu(seta) mac(hold)write(bus)
+acu(hold, hold) dmux(sra, sra) alu(seta) mac(hold)write(da)
+acu(incr, hold) dmux(sa, sa) alu(hold) mac(hold) write(da) jmp(eob, ChA_EXIT)
+
+area acu
+
+
+ChA_MAX:  dw ChA_LAST, ChA_LAST
+ChA_MIN:  dw ChA_FIRST, ChA_FIRST
+ChA_FREG: dw 0x0202
+
+
+area data_b
+ChA_FIRST: dw   142866
+dw   285731
+dw   142866
+dw  3265851
+dw 15295068
+dw   582077
+dw  1164154
+dw   582077
+dw  3277075
+dw 14975442
+dw   575067
+dw  1150135
+dw   575067
+dw  3250143
+dw 15535568
+dw   610459
+dw  1220917
+dw   610459
+dw  3275821
+dw 14530150
+dw   594521
+dw  1189041
+dw   594521
+dw  3233519
+dw 15720626
+dw   552036
+dw  1104073
+dw   552036
+dw  3217775
+dw 15864024
+dw   491201
+dw   982401
+dw   491201
+dw  3203878
+dw 15974420
+dw   432663
+dw   865326
+dw   432663
+dw  3192367
+dw 16057488
+dw   417745
+dw   835491
+dw   417745
+dw  3183548
+dw 16117007
+dw   409624
+dw   819247
+dw   409624
+dw  3177594
+dw 16155450
+dw   405657
+dw   811313
+dw   405657
+dw  3174596
+dw 16174317
+dw  3893926
+dw  7787852
+dw  3893926
+dw  3238950
+ChA_LAST: dw 13838620
+
+
+area acu
+TEMP: dw 0x7E7E
+ROUND:dw 0x7F7F
+
+area data_a
+org 127
+dw 2048
+
+area data_b
+org 127
+dw 2048
+
+PROGRAM = ChA_init
+ChA_EXIT = WaitForNew
+
+

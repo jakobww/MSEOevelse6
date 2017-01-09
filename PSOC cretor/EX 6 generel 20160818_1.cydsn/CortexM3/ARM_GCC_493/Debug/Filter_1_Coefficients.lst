@@ -1,0 +1,610 @@
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Filter_1_Coefficients.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	Filter_1_ChannelABiquadCoefficients
+  19              		.section	.rodata
+  20              		.align	2
+  21              		.type	Filter_1_ChannelABiquadCoefficients, %object
+  22              		.size	Filter_1_ChannelABiquadCoefficients, 240
+  23              	Filter_1_ChannelABiquadCoefficients:
+  24 0000 12       		.byte	18
+  25 0001 2E       		.byte	46
+  26 0002 02       		.byte	2
+  27 0003 00       		.byte	0
+  28 0004 23       		.byte	35
+  29 0005 5C       		.byte	92
+  30 0006 04       		.byte	4
+  31 0007 00       		.byte	0
+  32 0008 12       		.byte	18
+  33 0009 2E       		.byte	46
+  34 000a 02       		.byte	2
+  35 000b 00       		.byte	0
+  36 000c 3B       		.byte	59
+  37 000d D5       		.byte	-43
+  38 000e 31       		.byte	49
+  39 000f 00       		.byte	0
+  40 0010 5C       		.byte	92
+  41 0011 62       		.byte	98
+  42 0012 E9       		.byte	-23
+  43 0013 00       		.byte	0
+  44 0014 BD       		.byte	-67
+  45 0015 E1       		.byte	-31
+  46 0016 08       		.byte	8
+  47 0017 00       		.byte	0
+  48 0018 7A       		.byte	122
+  49 0019 C3       		.byte	-61
+  50 001a 11       		.byte	17
+  51 001b 00       		.byte	0
+  52 001c BD       		.byte	-67
+  53 001d E1       		.byte	-31
+  54 001e 08       		.byte	8
+  55 001f 00       		.byte	0
+  56 0020 13       		.byte	19
+  57 0021 01       		.byte	1
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 2
+
+
+  58 0022 32       		.byte	50
+  59 0023 00       		.byte	0
+  60 0024 D2       		.byte	-46
+  61 0025 81       		.byte	-127
+  62 0026 E4       		.byte	-28
+  63 0027 00       		.byte	0
+  64 0028 5B       		.byte	91
+  65 0029 C6       		.byte	-58
+  66 002a 08       		.byte	8
+  67 002b 00       		.byte	0
+  68 002c B7       		.byte	-73
+  69 002d 8C       		.byte	-116
+  70 002e 11       		.byte	17
+  71 002f 00       		.byte	0
+  72 0030 5B       		.byte	91
+  73 0031 C6       		.byte	-58
+  74 0032 08       		.byte	8
+  75 0033 00       		.byte	0
+  76 0034 DF       		.byte	-33
+  77 0035 97       		.byte	-105
+  78 0036 31       		.byte	49
+  79 0037 00       		.byte	0
+  80 0038 D0       		.byte	-48
+  81 0039 0D       		.byte	13
+  82 003a ED       		.byte	-19
+  83 003b 00       		.byte	0
+  84 003c 9B       		.byte	-101
+  85 003d 50       		.byte	80
+  86 003e 09       		.byte	9
+  87 003f 00       		.byte	0
+  88 0040 35       		.byte	53
+  89 0041 A1       		.byte	-95
+  90 0042 12       		.byte	18
+  91 0043 00       		.byte	0
+  92 0044 9B       		.byte	-101
+  93 0045 50       		.byte	80
+  94 0046 09       		.byte	9
+  95 0047 00       		.byte	0
+  96 0048 2D       		.byte	45
+  97 0049 FC       		.byte	-4
+  98 004a 31       		.byte	49
+  99 004b 00       		.byte	0
+ 100 004c 66       		.byte	102
+ 101 004d B6       		.byte	-74
+ 102 004e DD       		.byte	-35
+ 103 004f 00       		.byte	0
+ 104 0050 59       		.byte	89
+ 105 0051 12       		.byte	18
+ 106 0052 09       		.byte	9
+ 107 0053 00       		.byte	0
+ 108 0054 B1       		.byte	-79
+ 109 0055 24       		.byte	36
+ 110 0056 12       		.byte	18
+ 111 0057 00       		.byte	0
+ 112 0058 59       		.byte	89
+ 113 0059 12       		.byte	18
+ 114 005a 09       		.byte	9
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 3
+
+
+ 115 005b 00       		.byte	0
+ 116 005c EF       		.byte	-17
+ 117 005d 56       		.byte	86
+ 118 005e 31       		.byte	49
+ 119 005f 00       		.byte	0
+ 120 0060 B2       		.byte	-78
+ 121 0061 E0       		.byte	-32
+ 122 0062 EF       		.byte	-17
+ 123 0063 00       		.byte	0
+ 124 0064 64       		.byte	100
+ 125 0065 6C       		.byte	108
+ 126 0066 08       		.byte	8
+ 127 0067 00       		.byte	0
+ 128 0068 C9       		.byte	-55
+ 129 0069 D8       		.byte	-40
+ 130 006a 10       		.byte	16
+ 131 006b 00       		.byte	0
+ 132 006c 64       		.byte	100
+ 133 006d 6C       		.byte	108
+ 134 006e 08       		.byte	8
+ 135 006f 00       		.byte	0
+ 136 0070 6F       		.byte	111
+ 137 0071 19       		.byte	25
+ 138 0072 31       		.byte	49
+ 139 0073 00       		.byte	0
+ 140 0074 D8       		.byte	-40
+ 141 0075 10       		.byte	16
+ 142 0076 F2       		.byte	-14
+ 143 0077 00       		.byte	0
+ 144 0078 C1       		.byte	-63
+ 145 0079 7E       		.byte	126
+ 146 007a 07       		.byte	7
+ 147 007b 00       		.byte	0
+ 148 007c 81       		.byte	-127
+ 149 007d FD       		.byte	-3
+ 150 007e 0E       		.byte	14
+ 151 007f 00       		.byte	0
+ 152 0080 C1       		.byte	-63
+ 153 0081 7E       		.byte	126
+ 154 0082 07       		.byte	7
+ 155 0083 00       		.byte	0
+ 156 0084 26       		.byte	38
+ 157 0085 E3       		.byte	-29
+ 158 0086 30       		.byte	48
+ 159 0087 00       		.byte	0
+ 160 0088 14       		.byte	20
+ 161 0089 C0       		.byte	-64
+ 162 008a F3       		.byte	-13
+ 163 008b 00       		.byte	0
+ 164 008c 17       		.byte	23
+ 165 008d 9A       		.byte	-102
+ 166 008e 06       		.byte	6
+ 167 008f 00       		.byte	0
+ 168 0090 2E       		.byte	46
+ 169 0091 34       		.byte	52
+ 170 0092 0D       		.byte	13
+ 171 0093 00       		.byte	0
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 4
+
+
+ 172 0094 17       		.byte	23
+ 173 0095 9A       		.byte	-102
+ 174 0096 06       		.byte	6
+ 175 0097 00       		.byte	0
+ 176 0098 2F       		.byte	47
+ 177 0099 B6       		.byte	-74
+ 178 009a 30       		.byte	48
+ 179 009b 00       		.byte	0
+ 180 009c 90       		.byte	-112
+ 181 009d 04       		.byte	4
+ 182 009e F5       		.byte	-11
+ 183 009f 00       		.byte	0
+ 184 00a0 D1       		.byte	-47
+ 185 00a1 5F       		.byte	95
+ 186 00a2 06       		.byte	6
+ 187 00a3 00       		.byte	0
+ 188 00a4 A3       		.byte	-93
+ 189 00a5 BF       		.byte	-65
+ 190 00a6 0C       		.byte	12
+ 191 00a7 00       		.byte	0
+ 192 00a8 D1       		.byte	-47
+ 193 00a9 5F       		.byte	95
+ 194 00aa 06       		.byte	6
+ 195 00ab 00       		.byte	0
+ 196 00ac BC       		.byte	-68
+ 197 00ad 93       		.byte	-109
+ 198 00ae 30       		.byte	48
+ 199 00af 00       		.byte	0
+ 200 00b0 0F       		.byte	15
+ 201 00b1 ED       		.byte	-19
+ 202 00b2 F5       		.byte	-11
+ 203 00b3 00       		.byte	0
+ 204 00b4 18       		.byte	24
+ 205 00b5 40       		.byte	64
+ 206 00b6 06       		.byte	6
+ 207 00b7 00       		.byte	0
+ 208 00b8 2F       		.byte	47
+ 209 00b9 80       		.byte	-128
+ 210 00ba 0C       		.byte	12
+ 211 00bb 00       		.byte	0
+ 212 00bc 18       		.byte	24
+ 213 00bd 40       		.byte	64
+ 214 00be 06       		.byte	6
+ 215 00bf 00       		.byte	0
+ 216 00c0 7A       		.byte	122
+ 217 00c1 7C       		.byte	124
+ 218 00c2 30       		.byte	48
+ 219 00c3 00       		.byte	0
+ 220 00c4 3A       		.byte	58
+ 221 00c5 83       		.byte	-125
+ 222 00c6 F6       		.byte	-10
+ 223 00c7 00       		.byte	0
+ 224 00c8 99       		.byte	-103
+ 225 00c9 30       		.byte	48
+ 226 00ca 06       		.byte	6
+ 227 00cb 00       		.byte	0
+ 228 00cc 31       		.byte	49
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 5
+
+
+ 229 00cd 61       		.byte	97
+ 230 00ce 0C       		.byte	12
+ 231 00cf 00       		.byte	0
+ 232 00d0 99       		.byte	-103
+ 233 00d1 30       		.byte	48
+ 234 00d2 06       		.byte	6
+ 235 00d3 00       		.byte	0
+ 236 00d4 C4       		.byte	-60
+ 237 00d5 70       		.byte	112
+ 238 00d6 30       		.byte	48
+ 239 00d7 00       		.byte	0
+ 240 00d8 ED       		.byte	-19
+ 241 00d9 CC       		.byte	-52
+ 242 00da F6       		.byte	-10
+ 243 00db 00       		.byte	0
+ 244 00dc A6       		.byte	-90
+ 245 00dd 6A       		.byte	106
+ 246 00de 3B       		.byte	59
+ 247 00df 00       		.byte	0
+ 248 00e0 4C       		.byte	76
+ 249 00e1 D5       		.byte	-43
+ 250 00e2 76       		.byte	118
+ 251 00e3 00       		.byte	0
+ 252 00e4 A6       		.byte	-90
+ 253 00e5 6A       		.byte	106
+ 254 00e6 3B       		.byte	59
+ 255 00e7 00       		.byte	0
+ 256 00e8 26       		.byte	38
+ 257 00e9 6C       		.byte	108
+ 258 00ea 31       		.byte	49
+ 259 00eb 00       		.byte	0
+ 260 00ec 1C       		.byte	28
+ 261 00ed 29       		.byte	41
+ 262 00ee D3       		.byte	-45
+ 263 00ef 00       		.byte	0
+ 264              		.text
+ 265              	.Letext0:
+ 266              		.file 1 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 267              		.file 2 ".\\Generated_Source\\PSoC5\\Filter_1_Coefficients.c"
+ 268              		.section	.debug_info,"",%progbits
+ 269              	.Ldebug_info0:
+ 270 0000 AE000000 		.4byte	0xae
+ 271 0004 0400     		.2byte	0x4
+ 272 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 273 000a 04       		.byte	0x4
+ 274 000b 01       		.uleb128 0x1
+ 275 000c 10010000 		.4byte	.LASF13
+ 276 0010 01       		.byte	0x1
+ 277 0011 DD010000 		.4byte	.LASF14
+ 278 0015 3F000000 		.4byte	.LASF15
+ 279 0019 00000000 		.4byte	.Ldebug_line0
+ 280 001d 02       		.uleb128 0x2
+ 281 001e 04       		.byte	0x4
+ 282 001f 05       		.byte	0x5
+ 283 0020 696E7400 		.ascii	"int\000"
+ 284 0024 03       		.uleb128 0x3
+ 285 0025 04       		.byte	0x4
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 6
+
+
+ 286 0026 07       		.byte	0x7
+ 287 0027 0E000000 		.4byte	.LASF0
+ 288 002b 03       		.uleb128 0x3
+ 289 002c 01       		.byte	0x1
+ 290 002d 06       		.byte	0x6
+ 291 002e C1010000 		.4byte	.LASF1
+ 292 0032 03       		.uleb128 0x3
+ 293 0033 01       		.byte	0x1
+ 294 0034 08       		.byte	0x8
+ 295 0035 F4000000 		.4byte	.LASF2
+ 296 0039 03       		.uleb128 0x3
+ 297 003a 02       		.byte	0x2
+ 298 003b 05       		.byte	0x5
+ 299 003c D3010000 		.4byte	.LASF3
+ 300 0040 03       		.uleb128 0x3
+ 301 0041 02       		.byte	0x2
+ 302 0042 07       		.byte	0x7
+ 303 0043 AE010000 		.4byte	.LASF4
+ 304 0047 03       		.uleb128 0x3
+ 305 0048 04       		.byte	0x4
+ 306 0049 05       		.byte	0x5
+ 307 004a 07010000 		.4byte	.LASF5
+ 308 004e 03       		.uleb128 0x3
+ 309 004f 04       		.byte	0x4
+ 310 0050 07       		.byte	0x7
+ 311 0051 CB000000 		.4byte	.LASF6
+ 312 0055 03       		.uleb128 0x3
+ 313 0056 08       		.byte	0x8
+ 314 0057 05       		.byte	0x5
+ 315 0058 00000000 		.4byte	.LASF7
+ 316 005c 03       		.uleb128 0x3
+ 317 005d 08       		.byte	0x8
+ 318 005e 07       		.byte	0x7
+ 319 005f DD000000 		.4byte	.LASF8
+ 320 0063 03       		.uleb128 0x3
+ 321 0064 04       		.byte	0x4
+ 322 0065 07       		.byte	0x7
+ 323 0066 A5010000 		.4byte	.LASF9
+ 324 006a 03       		.uleb128 0x3
+ 325 006b 01       		.byte	0x1
+ 326 006c 08       		.byte	0x8
+ 327 006d 02010000 		.4byte	.LASF10
+ 328 0071 04       		.uleb128 0x4
+ 329 0072 C5000000 		.4byte	.LASF16
+ 330 0076 01       		.byte	0x1
+ 331 0077 3801     		.2byte	0x138
+ 332 0079 32000000 		.4byte	0x32
+ 333 007d 03       		.uleb128 0x3
+ 334 007e 04       		.byte	0x4
+ 335 007f 04       		.byte	0x4
+ 336 0080 CD010000 		.4byte	.LASF11
+ 337 0084 03       		.uleb128 0x3
+ 338 0085 08       		.byte	0x8
+ 339 0086 04       		.byte	0x4
+ 340 0087 9E010000 		.4byte	.LASF12
+ 341 008b 05       		.uleb128 0x5
+ 342 008c 71000000 		.4byte	0x71
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 7
+
+
+ 343 0090 9B000000 		.4byte	0x9b
+ 344 0094 06       		.uleb128 0x6
+ 345 0095 63000000 		.4byte	0x63
+ 346 0099 EF       		.byte	0xef
+ 347 009a 00       		.byte	0
+ 348 009b 07       		.uleb128 0x7
+ 349 009c 1B000000 		.4byte	.LASF17
+ 350 00a0 02       		.byte	0x2
+ 351 00a1 11       		.byte	0x11
+ 352 00a2 AC000000 		.4byte	0xac
+ 353 00a6 05       		.uleb128 0x5
+ 354 00a7 03       		.byte	0x3
+ 355 00a8 00000000 		.4byte	Filter_1_ChannelABiquadCoefficients
+ 356 00ac 08       		.uleb128 0x8
+ 357 00ad 8B000000 		.4byte	0x8b
+ 358 00b1 00       		.byte	0
+ 359              		.section	.debug_abbrev,"",%progbits
+ 360              	.Ldebug_abbrev0:
+ 361 0000 01       		.uleb128 0x1
+ 362 0001 11       		.uleb128 0x11
+ 363 0002 01       		.byte	0x1
+ 364 0003 25       		.uleb128 0x25
+ 365 0004 0E       		.uleb128 0xe
+ 366 0005 13       		.uleb128 0x13
+ 367 0006 0B       		.uleb128 0xb
+ 368 0007 03       		.uleb128 0x3
+ 369 0008 0E       		.uleb128 0xe
+ 370 0009 1B       		.uleb128 0x1b
+ 371 000a 0E       		.uleb128 0xe
+ 372 000b 10       		.uleb128 0x10
+ 373 000c 17       		.uleb128 0x17
+ 374 000d 00       		.byte	0
+ 375 000e 00       		.byte	0
+ 376 000f 02       		.uleb128 0x2
+ 377 0010 24       		.uleb128 0x24
+ 378 0011 00       		.byte	0
+ 379 0012 0B       		.uleb128 0xb
+ 380 0013 0B       		.uleb128 0xb
+ 381 0014 3E       		.uleb128 0x3e
+ 382 0015 0B       		.uleb128 0xb
+ 383 0016 03       		.uleb128 0x3
+ 384 0017 08       		.uleb128 0x8
+ 385 0018 00       		.byte	0
+ 386 0019 00       		.byte	0
+ 387 001a 03       		.uleb128 0x3
+ 388 001b 24       		.uleb128 0x24
+ 389 001c 00       		.byte	0
+ 390 001d 0B       		.uleb128 0xb
+ 391 001e 0B       		.uleb128 0xb
+ 392 001f 3E       		.uleb128 0x3e
+ 393 0020 0B       		.uleb128 0xb
+ 394 0021 03       		.uleb128 0x3
+ 395 0022 0E       		.uleb128 0xe
+ 396 0023 00       		.byte	0
+ 397 0024 00       		.byte	0
+ 398 0025 04       		.uleb128 0x4
+ 399 0026 16       		.uleb128 0x16
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 8
+
+
+ 400 0027 00       		.byte	0
+ 401 0028 03       		.uleb128 0x3
+ 402 0029 0E       		.uleb128 0xe
+ 403 002a 3A       		.uleb128 0x3a
+ 404 002b 0B       		.uleb128 0xb
+ 405 002c 3B       		.uleb128 0x3b
+ 406 002d 05       		.uleb128 0x5
+ 407 002e 49       		.uleb128 0x49
+ 408 002f 13       		.uleb128 0x13
+ 409 0030 00       		.byte	0
+ 410 0031 00       		.byte	0
+ 411 0032 05       		.uleb128 0x5
+ 412 0033 01       		.uleb128 0x1
+ 413 0034 01       		.byte	0x1
+ 414 0035 49       		.uleb128 0x49
+ 415 0036 13       		.uleb128 0x13
+ 416 0037 01       		.uleb128 0x1
+ 417 0038 13       		.uleb128 0x13
+ 418 0039 00       		.byte	0
+ 419 003a 00       		.byte	0
+ 420 003b 06       		.uleb128 0x6
+ 421 003c 21       		.uleb128 0x21
+ 422 003d 00       		.byte	0
+ 423 003e 49       		.uleb128 0x49
+ 424 003f 13       		.uleb128 0x13
+ 425 0040 2F       		.uleb128 0x2f
+ 426 0041 0B       		.uleb128 0xb
+ 427 0042 00       		.byte	0
+ 428 0043 00       		.byte	0
+ 429 0044 07       		.uleb128 0x7
+ 430 0045 34       		.uleb128 0x34
+ 431 0046 00       		.byte	0
+ 432 0047 03       		.uleb128 0x3
+ 433 0048 0E       		.uleb128 0xe
+ 434 0049 3A       		.uleb128 0x3a
+ 435 004a 0B       		.uleb128 0xb
+ 436 004b 3B       		.uleb128 0x3b
+ 437 004c 0B       		.uleb128 0xb
+ 438 004d 49       		.uleb128 0x49
+ 439 004e 13       		.uleb128 0x13
+ 440 004f 3F       		.uleb128 0x3f
+ 441 0050 19       		.uleb128 0x19
+ 442 0051 02       		.uleb128 0x2
+ 443 0052 18       		.uleb128 0x18
+ 444 0053 00       		.byte	0
+ 445 0054 00       		.byte	0
+ 446 0055 08       		.uleb128 0x8
+ 447 0056 26       		.uleb128 0x26
+ 448 0057 00       		.byte	0
+ 449 0058 49       		.uleb128 0x49
+ 450 0059 13       		.uleb128 0x13
+ 451 005a 00       		.byte	0
+ 452 005b 00       		.byte	0
+ 453 005c 00       		.byte	0
+ 454              		.section	.debug_aranges,"",%progbits
+ 455 0000 14000000 		.4byte	0x14
+ 456 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 9
+
+
+ 457 0006 00000000 		.4byte	.Ldebug_info0
+ 458 000a 04       		.byte	0x4
+ 459 000b 00       		.byte	0
+ 460 000c 0000     		.2byte	0
+ 461 000e 0000     		.2byte	0
+ 462 0010 00000000 		.4byte	0
+ 463 0014 00000000 		.4byte	0
+ 464              		.section	.debug_line,"",%progbits
+ 465              	.Ldebug_line0:
+ 466 0000 5A000000 		.section	.debug_str,"MS",%progbits,1
+ 466      02005400 
+ 466      00000201 
+ 466      FB0E0D00 
+ 466      01010101 
+ 467              	.LASF7:
+ 468 0000 6C6F6E67 		.ascii	"long long int\000"
+ 468      206C6F6E 
+ 468      6720696E 
+ 468      7400
+ 469              	.LASF0:
+ 470 000e 756E7369 		.ascii	"unsigned int\000"
+ 470      676E6564 
+ 470      20696E74 
+ 470      00
+ 471              	.LASF17:
+ 472 001b 46696C74 		.ascii	"Filter_1_ChannelABiquadCoefficients\000"
+ 472      65725F31 
+ 472      5F436861 
+ 472      6E6E656C 
+ 472      41426971 
+ 473              	.LASF15:
+ 474 003f 433A5C55 		.ascii	"C:\\Users\\Jakob Wilbrandt\\Documents\\2 Ikke priva"
+ 474      73657273 
+ 474      5C4A616B 
+ 474      6F622057 
+ 474      696C6272 
+ 475 006e 74655C41 		.ascii	"te\\AU\\AU oevelser\\MSE\\AmpOevelse\\MSEOevelse6\\"
+ 475      555C4155 
+ 475      206F6576 
+ 475      656C7365 
+ 475      725C4D53 
+ 476 009b 50534F43 		.ascii	"PSOC cretor\\EX 6 generel 20160818_1.cydsn\000"
+ 476      20637265 
+ 476      746F725C 
+ 476      45582036 
+ 476      2067656E 
+ 477              	.LASF16:
+ 478 00c5 75696E74 		.ascii	"uint8\000"
+ 478      3800
+ 479              	.LASF6:
+ 480 00cb 6C6F6E67 		.ascii	"long unsigned int\000"
+ 480      20756E73 
+ 480      69676E65 
+ 480      6420696E 
+ 480      7400
+ 481              	.LASF8:
+ 482 00dd 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 10
+
+
+ 482      206C6F6E 
+ 482      6720756E 
+ 482      7369676E 
+ 482      65642069 
+ 483              	.LASF2:
+ 484 00f4 756E7369 		.ascii	"unsigned char\000"
+ 484      676E6564 
+ 484      20636861 
+ 484      7200
+ 485              	.LASF10:
+ 486 0102 63686172 		.ascii	"char\000"
+ 486      00
+ 487              	.LASF5:
+ 488 0107 6C6F6E67 		.ascii	"long int\000"
+ 488      20696E74 
+ 488      00
+ 489              	.LASF13:
+ 490 0110 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 490      4320342E 
+ 490      392E3320 
+ 490      32303135 
+ 490      30333033 
+ 491 0143 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 491      20726576 
+ 491      6973696F 
+ 491      6E203232 
+ 491      31323230 
+ 492 0176 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 492      66756E63 
+ 492      74696F6E 
+ 492      2D736563 
+ 492      74696F6E 
+ 493              	.LASF12:
+ 494 019e 646F7562 		.ascii	"double\000"
+ 494      6C6500
+ 495              	.LASF9:
+ 496 01a5 73697A65 		.ascii	"sizetype\000"
+ 496      74797065 
+ 496      00
+ 497              	.LASF4:
+ 498 01ae 73686F72 		.ascii	"short unsigned int\000"
+ 498      7420756E 
+ 498      7369676E 
+ 498      65642069 
+ 498      6E7400
+ 499              	.LASF1:
+ 500 01c1 7369676E 		.ascii	"signed char\000"
+ 500      65642063 
+ 500      68617200 
+ 501              	.LASF11:
+ 502 01cd 666C6F61 		.ascii	"float\000"
+ 502      7400
+ 503              	.LASF3:
+ 504 01d3 73686F72 		.ascii	"short int\000"
+ 504      7420696E 
+ 504      7400
+ 505              	.LASF14:
+ARM GAS  C:\Users\JAKOBW~1\AppData\Local\Temp\cc9SWW4j.s 			page 11
+
+
+ 506 01dd 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Filter_1_Coefficients.c"
+ 506      6E657261 
+ 506      7465645F 
+ 506      536F7572 
+ 506      63655C50 
+ 507 020d 00       		.ascii	"\000"
+ 508              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
