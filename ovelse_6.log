@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.25)  9 JAN 2017 09:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.9.25)  9 JAN 2017 09:50
 entering extended mode
 **./ovelse_6.tex
 (ovelse_6.tex
@@ -1842,6 +1842,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 256.
 
+<figure/simulering.jpg, id=33, 689.57625pt x 270.25969pt>
+File: figure/simulering.jpg Graphic file (type jpg)
+
+<use figure/simulering.jpg>
+Package pdftex.def Info: figure/simulering.jpg used on input line 269.
+(pdftex.def)             Requested size: 304.55945pt x 119.36412pt.
+
 
 FiXme Summary: Number of notes: 0,
 (FiXme)        Number of warnings: 0,
@@ -1851,15 +1858,15 @@ FiXme Summary: Number of notes: 0,
 
 [4
 
-] (ovelse_6.aux
+ <./figure/simulering.jpg>] (ovelse_6.aux
 Package cleveref Info: loaded `danish' language definitions on input line 4.
 ) ) 
 Here is how much of TeX's memory you used:
- 24811 strings out of 493334
- 453375 string characters out of 3136640
+ 24822 strings out of 493334
+ 453560 string characters out of 3136640
  578751 words of memory out of 3000000
- 27969 multiletter control sequences out of 15000+200000
- 101548 words of font info for 126 fonts, out of 3000000 for 9000
+ 27975 multiletter control sequences out of 15000+200000
+ 101631 words of font info for 127 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,11n,92p,10361b,789s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Prog
@@ -1874,9 +1881,9 @@ X 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
 type1/public/lm/lmr6.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/
 lm/lmr8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb
 ><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb>
-Output written on ovelse_6.pdf (4 pages, 206192 bytes).
+Output written on ovelse_6.pdf (4 pages, 252308 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
+ 74 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 25114 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 25119 words of extra memory for PDF output out of 29859 (max. 10000000)
 
